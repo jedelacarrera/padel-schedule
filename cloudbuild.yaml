@@ -51,7 +51,3 @@ steps:
       - '--platform=managed'
     env:
       - 'PORT=8080'
-
-images:
-  - gcr.io/$PROJECT_ID/padel-schedule
-timeout: 900s
