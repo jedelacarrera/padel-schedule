@@ -1,0 +1,25 @@
+steps:
+  - id: yarn_add
+    name: node
+    entrypoint: yarn
+    args:
+      - add
+      - '@vue/cli'
+
+  - id: linter
+    name: node
+    waitFor:
+      - yarn_add
+    entrypoint: yarn
+    args:
+      - run
+      - lint
+      - '--no-fix'
+
+  - id: unit_tests
+    name: node
+    waitFor:
+      - yarn_add
+    entrypoint: yarn
+    args:
+      - test:unit
