@@ -5,7 +5,7 @@ const configureWebpack = {
   plugins: [],
 }
 
-export default {
+module.exports = {
   configureWebpack,
   transpileDependencies: ['vuetify'],
   css: {

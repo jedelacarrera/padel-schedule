@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   preset: '@vue/cli-plugin-unit-jest',
   moduleNameMapper: {
     '^worker-plugin/loader.+$': '<rootDir>/src/workers/uploader-worker',
