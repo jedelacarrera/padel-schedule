@@ -10,13 +10,14 @@ Vue.use(Vuetify, {
   },
 })
 
-const opts = {
+export default new Vuetify({
   lang: {
     locales: { es },
     current: 'es',
   },
   icons: {
     iconfont: 'mdi',
+    value: {},
   },
   theme: {
     options: {
@@ -28,9 +29,13 @@ const opts = {
       light: {
         primary: '#0074B5',
         background: '#F9F9F9',
+        red: '#EA4436',
+      },
+      dark: {
+        primary: '#0074B5',
+        background: '#F9F9F9',
+        red: '#EA4436',
       },
     },
   },
-}
-
-export default new Vuetify(opts)
+})

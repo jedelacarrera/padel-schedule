@@ -87,6 +87,9 @@
     <v-row justify="space-around" align="center" color="primary">
       <v-date-picker elevation="15" v-model="picker" header-color="primary" />
       <v-icon color="red">mdi-chevron-down</v-icon>
+      <v-icon color="red">
+        mdi-close
+      </v-icon>
     </v-row>
   </div>
 </template>
