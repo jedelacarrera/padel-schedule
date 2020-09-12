@@ -37,7 +37,7 @@ steps:
   - id: padel-schedule-deploy
     name: 'gcr.io/cloud-builders/gcloud' # deploy container image to Cloud Run
     waitFor:
-      - padel-schedule-push
+      - padel-schedule-build
       - linter
       - unit_tests
     args:
