@@ -1,0 +1,69 @@
+steps:
+  - id: yarn_add
+    name: node
+    entrypoint: yarn
+    args:
+      - add
+      - '@vue/cli'
+
+  - id: linter
+    name: node
+    waitFor:
+      - yarn_add
+    entrypoint: yarn
+    args:
+      - run
+      - lint
+      - '--no-fix'
+
+  - id: unit_tests
+    name: node
+    waitFor:
+      - yarn_add
+    entrypoint: yarn
+    args:
+      - test:unit
+
+  - id: padel-schedule-build # build the container image
+    name: 'gcr.io/cloud-builders/docker'
+    waitFor:
+      - 'add_sentry_release_env'
+    args:
+      - build
+      - --tag
+      - gcr.io/$PROJECT_ID/padel-schedule
+      - --cache-from
+      - gcr.io/$PROJECT_ID/padel-schedule
+      - --build-arg
+      - PROJECT_ID=$PROJECT_ID
+      - .
+
+  - id: padel-schedule-push
+    name: 'gcr.io/cloud-builders/docker'
+    waitFor:
+      - padel-schedule-build
+    args:
+      - push
+      - gcr.io/$PROJECT_ID/padel-schedule
+
+  - id: padel-schedule-deploy
+    name: 'gcr.io/cloud-builders/gcloud' # deploy container image to Cloud Run
+    waitFor:
+      - padel-schedule-push
+      - linter
+      - unit_tests
+    args:
+      - run
+      - deploy
+      - padel-schedule
+      - '--image=gcr.io/$PROJECT_ID/padel-schedule'
+      - '--region=us-central1'
+      - '--allow-unauthenticated'
+      - '--memory=256Mi'
+      - '--platform=managed'
+    env:
+      - 'PORT=8080'
+
+images:
+  - gcr.io/$PROJECT_ID/padel-schedule
+timeout: 900s
