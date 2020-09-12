@@ -3,7 +3,6 @@ FROM node:lts-alpine as build-stage
 WORKDIR /app
 RUN apk add yarn
 COPY . .
-ARG PROJECT_ID
 RUN yarn
 RUN yarn build
 

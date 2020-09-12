@@ -25,25 +25,13 @@ steps:
       - test:unit
 
   - id: padel-schedule-build # build the container image
-    name: 'gcr.io/cloud-builders/docker'
+    name: 'gcr.io/cloud-builders/gcloud'
     waitFor:
       - '-'
     args:
-      - build
+      - builds
+      - submit
       - --tag
-      - gcr.io/$PROJECT_ID/padel-schedule
-      - --cache-from
-      - gcr.io/$PROJECT_ID/padel-schedule
-      - --build-arg
-      - PROJECT_ID=$PROJECT_ID
-      - .
-
-  - id: padel-schedule-push
-    name: 'gcr.io/cloud-builders/docker'
-    waitFor:
-      - padel-schedule-build
-    args:
-      - push
       - gcr.io/$PROJECT_ID/padel-schedule
 
   - id: padel-schedule-deploy
