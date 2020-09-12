@@ -86,10 +86,11 @@
     </ul>
     <v-row justify="space-around" align="center" color="primary">
       <v-date-picker elevation="15" v-model="picker" header-color="primary" />
-      <v-icon color="red">mdi-chevron-down</v-icon>
-      <v-icon color="red">
-        mdi-close
-      </v-icon>
+      <v-btn icon @click="log">
+        <v-icon color="red">mdi-chevron-down</v-icon>
+      </v-btn>
+      <v-icon color="primary">mdi-close</v-icon>
+      <v-icon color="background">mdi-close</v-icon>
     </v-row>
   </div>
 </template>
@@ -104,6 +105,11 @@ export default {
     return {
       picker: '',
     }
+  },
+  methods: {
+    log() {
+      console.log('button clicked!')
+    },
   },
 }
 </script>

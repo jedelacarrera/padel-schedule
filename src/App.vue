@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
+  <v-app>
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App (Canchas Padel)" />
-  </div>
+  </v-app>
 </template>
 
 <script>
