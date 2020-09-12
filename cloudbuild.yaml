@@ -27,7 +27,7 @@ steps:
   - id: padel-schedule-build # build the container image
     name: 'gcr.io/cloud-builders/docker'
     waitFor:
-      - 'add_sentry_release_env'
+      - '-'
     args:
       - build
       - --tag
