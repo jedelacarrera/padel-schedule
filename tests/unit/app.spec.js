@@ -14,7 +14,6 @@ describe('App', () => {
   })
 
   it('Check App', () => {
-    expect(wrapper.findAll('img').length).toBe(1)
-    expect(wrapper.text()).toContain('Find the padel courts')
+    expect(wrapper.text()).toContain('Encuentra tu cancha de padel!')
   })
 })
