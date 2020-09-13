@@ -1,17 +1,16 @@
 <template>
   <v-app>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App (Canchas Padel)" />
+    <Layout />
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Layout from './components/Layout.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    Layout,
   },
 }
 </script>
@@ -23,6 +22,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
