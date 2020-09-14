@@ -1,24 +1,4 @@
 steps:
-  - id: test-api
-    name: "gcr.io/cloud-builders/gcloud"
-    waitFor:
-      - "-"
-    args:
-      - builds
-      - submit
-      - api
-      - --config=api/cloudtest.yaml
-
-  - id: test-front
-    name: "gcr.io/cloud-builders/gcloud"
-    waitFor:
-      - "-"
-    args:
-      - builds
-      - submit
-      - front
-      - --config=front/cloudtest.yaml
-
   - id: python-builder
     name: "gcr.io/cloud-builders/gcloud"
     waitFor:
