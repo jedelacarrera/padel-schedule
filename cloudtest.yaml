@@ -1,5 +1,15 @@
 steps:
-  - id: python-builder
+  - id: test-api
+    name: "gcr.io/cloud-builders/gcloud"
+    waitFor:
+      - "-"
+    args:
+      - builds
+      - submit
+      - api
+      - --config=api/cloudtest.yaml
+
+  - id: test-front
     name: "gcr.io/cloud-builders/gcloud"
     waitFor:
       - "-"
@@ -7,6 +17,6 @@ steps:
       - builds
       - submit
       - front
-      - --config=python-cloud-builder/cloudbuild.yaml
+      - --config=front/cloudtest.yaml
 
 timeout: 900s
