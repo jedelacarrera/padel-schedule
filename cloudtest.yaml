@@ -1,25 +1,22 @@
 steps:
-  - id: yarn_add
-    name: node
-    entrypoint: yarn
-    args:
-      - add
-      - '@vue/cli'
-
-  - id: linter
-    name: node
+  - id: test-api
+    name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: "bash"
     waitFor:
-      - yarn_add
-    entrypoint: yarn
+      - "-"
     args:
-      - run
-      - lint
-      - '--no-fix'
+      - "-c"
+      - |
+        gcloud builds submit api --config=api/cloudtest.yaml
 
-  - id: unit_tests
-    name: node
+  - id: test-front
+    name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: "bash"
     waitFor:
-      - yarn_add
-    entrypoint: yarn
+      - "-"
     args:
-      - test:unit
+      - "-c"
+      - |
+        gcloud builds submit front --config=front/cloudtest.yaml
+
+timeout: 900s
