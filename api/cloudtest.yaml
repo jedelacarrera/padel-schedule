@@ -5,7 +5,7 @@ steps:
       - "-"
     entrypoint: /bin/bash
     args:
-      - "-c"
+      - -c
       - "virtualenv /workspace/venv"
   - id: python_packages
     name: gcr.io/$PROJECT_ID/python-cloudbuild
@@ -14,8 +14,8 @@ steps:
     entrypoint: venv/bin/pip
     args:
       - install
-      - "-q"
-      - "-r"
+      - -q
+      - -r
       - requirements.txt
   - id: pylint
     name: gcr.io/$PROJECT_ID/python-cloudbuild
