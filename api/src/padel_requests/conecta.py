@@ -24,4 +24,4 @@ COOKIES = {
 
 def get_conecta_schedule(date):
     data = json.dumps({"idCuadro": "4", "fecha": date})  # 16/9/2020
-    return requests.post(URL, headers=HEADERS, cookies=COOKIES, data=data)
+    return requests.post(URL, headers=HEADERS, cookies=COOKIES, data=data).json()
