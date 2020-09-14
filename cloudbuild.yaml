@@ -1,22 +1,22 @@
 steps:
   - id: test-api
     name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: "bash"
     waitFor:
       - "-"
     args:
-      - builds
-      - submit
-      - api
-      - --config=api/cloudbuild.yaml
+      - "-c"
+      - |
+        gcloud builds submit api --config=api/cloudbuild.yaml
 
   - id: test-front
     name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: "bash"
     waitFor:
       - "-"
     args:
-      - builds
-      - submit
-      - front
-      - --config=front/cloudbuild.yaml
+      - "-c"
+      - |
+        gcloud builds submit front --config=front/cloudbuild.yaml
 
 timeout: 900s
