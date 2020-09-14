@@ -1,7 +1,22 @@
 steps:
-  - id: create-python-cloud-build
-    name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "gcr.io/$PROJECT_ID/python-cloudbuild", "."]
+  - id: test-api
+    name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: "bash"
+    waitFor:
+      - "-"
+    args:
+      - "-c"
+      - |
+        gcloud builds submit api --config=api/cloudtest.yaml
 
-images:
-  - "gcr.io/$PROJECT_ID/python-cloudbuild"
+  - id: test-front
+    name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: "bash"
+    waitFor:
+      - "-"
+    args:
+      - "-c"
+      - |
+        gcloud builds submit front --config=front/cloudtest.yaml
+
+timeout: 900s
