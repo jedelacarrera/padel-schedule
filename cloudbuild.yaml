@@ -1,53 +1,22 @@
 steps:
-  - id: yarn_add
-    name: node
-    entrypoint: yarn
-    args:
-      - add
-      - '@vue/cli'
-
-  - id: linter
-    name: node
+  - id: test-api
+    name: "gcr.io/cloud-builders/gcloud"
     waitFor:
-      - yarn_add
-    entrypoint: yarn
-    args:
-      - run
-      - lint
-      - '--no-fix'
-
-  - id: unit_tests
-    name: node
-    waitFor:
-      - yarn_add
-    entrypoint: yarn
-    args:
-      - test:unit
-
-  - id: padel-schedule-build # build the container image
-    name: 'gcr.io/cloud-builders/gcloud'
-    waitFor:
-      - '-'
+      - "-"
     args:
       - builds
       - submit
-      - --tag
-      - gcr.io/$PROJECT_ID/padel-schedule
+      - api
+      - --config=api/cloudbuild.yaml
 
-  - id: padel-schedule-deploy
-    name: 'gcr.io/cloud-builders/gcloud' # deploy container image to Cloud Run
+  - id: test-front
+    name: "gcr.io/cloud-builders/gcloud"
     waitFor:
-      - padel-schedule-build
-      - linter
-      - unit_tests
+      - "-"
     args:
-      - run
-      - deploy
-      - padel-schedule
-      - '--image=gcr.io/$PROJECT_ID/padel-schedule'
-      - '--region=us-central1'
-      - '--allow-unauthenticated'
-      - '--memory=256Mi'
-      - '--platform=managed'
-    env:
-      - 'PORT=8080'
+      - builds
+      - submit
+      - front
+      - --config=front/cloudbuild.yaml
+
+timeout: 900s
