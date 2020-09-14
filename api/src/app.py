@@ -7,11 +7,11 @@ app = Flask(__name__)
 CORS(app, support_credentials=True, resources={r"/*": {"origins": "*"}})
 
 
-
 @app.route("/get_schedule/<provider>/<date>", methods=["GET"])
 def get_schedule(provider, date):
     function = PADEL_REQUESTS[provider]
     return function(date)
+
 
 @app.route("/", methods=["GET"])
 def index():
