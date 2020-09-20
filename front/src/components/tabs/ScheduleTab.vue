@@ -16,7 +16,8 @@
 
 <script>
 import CourtsTable from '@/components/CourtsTable'
-const apiURL = 'https://padel-api-54td4ousva-uc.a.run.app/get_schedule'
+const apiURL = 'http://localhost:8000/get_schedule'
+// const apiURL = 'https://padel-api-54td4ousva-uc.a.run.app/get_schedule'
 const currentDate = new Date()
 const twoWeeksAhead = new Date()
 twoWeeksAhead.setDate(twoWeeksAhead.getDate() + 14)
