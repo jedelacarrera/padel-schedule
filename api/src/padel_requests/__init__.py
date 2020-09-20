@@ -1,13 +1,13 @@
 import re
-from src.padel_requests.conecta import get_conecta_schedule
+from src.padel_requests.conecta import ConectaClient
 
 # REGEX = r"^[0-3]?[0-9][/-\.][01]?[0-9][/-\.]202[0-9]$"
 REGEX = re.compile(r"^(202[0-9]).([01]?[0-9]).([0123]?[0-9])$")
 
 
 PADEL_REQUESTS = {
-    "conecta": get_conecta_schedule,
-    "padelbreak": get_conecta_schedule,
+    "conecta": ConectaClient().get_schedule,
+    "padelbreak": ConectaClient().get_schedule,
 }
 
 

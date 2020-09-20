@@ -1,26 +1,22 @@
 import json
 from unittest.mock import patch
-from src.padel_requests.conecta import ConectaClient
+from src.app import app
 
 with open("tests/padel_requests/response.json", "rb") as file:
     RESPONSE = json.load(file)
 
 
-def test_get_info_from_court(snapshot):
-    client = ConectaClient()
-    result = client.get_info_from_court(RESPONSE["d"]["Columnas"][4])
-    snapshot.assert_match(result)
-
-
 @patch("src.padel_requests.base.requests")
-def test_get_conecta_schedule(requests, snapshot):
-    client = ConectaClient()
+def test_send_reminder(requests, snapshot):
     requests.post().json.return_value = RESPONSE
     data = '{"idCuadro": "4", "fecha": "16/09/2021"}'
     url = "http://www.clubconecta.cl/booking/srvc.aspx/ObtenerCuadro"
-    result = client.get_schedule("16/09/2021")
+    with app.test_client() as test_app:
+        result = test_app.get("/get_schedule/conecta/2021-09-16")
+
     assert requests.post.call_args[0] == (url,)
     assert requests.post.call_args[1].get("headers") is not None
     assert requests.post.call_args[1].get("cookies") is not None
     assert requests.post.call_args[1].get("data") == data
-    snapshot.assert_match(result)
+    assert result.status_code == 200
+    snapshot.assert_match(result.json)

@@ -3,7 +3,7 @@ from src.memoization_decorator import cache_decorator
 
 
 class ConectaClient(BaseClient):
-    URL = "http://www.clubconecta.cl/booking/srvc.aspx/ObtenerCuadro"
+    URL = "http://padelbreak.cl/booking/srvc.aspx/ObtenerCuadro"
 
     HEADERS = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",  # pylint: disable=line-too-long
@@ -11,19 +11,19 @@ class ConectaClient(BaseClient):
         "Accept-Language": "en-US,en;q=0.5",
         "Content-Type": "application/json; charset=utf-8",
         "X-Requested-With": "XMLHttpRequest",
-        "Origin": "http://www.clubconecta.cl",
+        "Origin": "http://padelbreak.cl",
         "Connection": "keep-alive",
-        "Referer": "http://www.clubconecta.cl/Booking/Grid.aspx",
+        "Referer": "http://padelbreak.cl/Booking/Grid.aspx",
     }
 
     COOKIES = {
-        "cb-enabled": "enabled",
-        "ASP.NET_SessionId": "cfwfnmn1c15bx0u34g5bkoia",
+        "cb-enabled": "accepted",
+        "ASP.NET_SessionId": "v3xpz3m3o5ptzq454acdtj55",
         "i18next": "es-CL",
     }
 
-    NAME = "Conecta"
+    NAME = "Padel Break"
 
-    @cache_decorator("conecta", 60, index=1)
+    @cache_decorator("padelbreak", 60, index=1)
     def get_schedule(self, date: str):
         return super().get_schedule(date)
