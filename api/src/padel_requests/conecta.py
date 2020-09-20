@@ -1,6 +1,7 @@
 import json
 import requests
 from src.helpers import time_to_float
+from src.memoization_decorator import cache_decorator
 
 URL = "http://www.clubconecta.cl/booking/srvc.aspx/ObtenerCuadro"
 
@@ -23,6 +24,7 @@ COOKIES = {
 }
 
 
+@cache_decorator("conecta", 60)
 def get_conecta_schedule(date: str) -> dict:
     data = json.dumps({"idCuadro": "4", "fecha": date})  # 16/9/2020
     response = requests.post(URL, headers=HEADERS, cookies=COOKIES, data=data).json()

@@ -5,7 +5,7 @@
         <tr>
           <th v-for="(court, index) in courts" :key="index" class="header">
             <div>
-              <h3>{{ court.provider }}</h3>
+              <h5>{{ court.provider }}</h5>
               <p>({{ court.name }})</p>
             </div>
           </th>
