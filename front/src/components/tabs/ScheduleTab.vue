@@ -1,61 +1,51 @@
 <template>
   <div>
-    <v-date-picker v-model="pickedDate" />
-    <div>{{ names }}. {{ initialTime }} - {{ finalTime }}</div>
-    <div>
-      {{ responses }}
-    </div>
+    <v-row justify="space-around">
+      <v-date-picker
+        no-title
+        v-model="pickedDate"
+        first-day-of-week="1"
+        :min="minDate"
+        :max="maxDate"
+      />
+    </v-row>
+    <div>{{ names }}</div>
+    <courts-table :providers="responses" />
   </div>
 </template>
 
 <script>
-const apiURL = 'https://padel-api-54td4ousva-uc.a.run.app/get_schedule'
+import CourtsTable from '@/components/CourtsTable'
+const apiURL = 'http://localhost:8000/get_schedule'
+// const apiURL = 'https://padel-api-54td4ousva-uc.a.run.app/get_schedule'
+const currentDate = new Date()
+const twoWeeksAhead = new Date()
+twoWeeksAhead.setDate(twoWeeksAhead.getDate() + 14)
+
 export default {
   data() {
     return {
-      pickedDate: '',
+      pickedDate: currentDate.toISOString().slice(0, 10),
       responses: [],
+      minDate: currentDate.toISOString(),
+      maxDate: twoWeeksAhead.toISOString(),
     }
+  },
+  components: {
+    CourtsTable,
   },
   computed: {
     names() {
-      const names = this.responses.map(response => response.Nombre).join(', ')
+      const names = this.responses.map(response => response.name).join(', ')
       return 'Clubes: ' + names
-    },
-    initialTime() {
-      let time = 12
-      this.responses.forEach(response => {
-        if (response.StrHoraInicio) {
-          const responseInitialTime = parseInt(
-            response.StrHoraInicio.slice(0, 2)
-          )
-          if (responseInitialTime < time) {
-            time = responseInitialTime
-          }
-        }
-      })
-      return time
-    },
-    finalTime() {
-      let time = 20
-      this.responses.forEach(response => {
-        if (response.StrHoraFin) {
-          const responseFinalTime = parseInt(response.StrHoraFin.slice(0, 2))
-          if (responseFinalTime > time) {
-            time = responseFinalTime
-          }
-        }
-      })
-      return time
     },
   },
   methods: {
     async fetchProvider(provider, date) {
       const response = await fetch(`${apiURL}/${provider}/${date}`)
-      const text = await response.json()
-      if (text.d) {
-        this.responses.push(text.d)
-      }
+      const data = await response.json()
+      console.log(data)
+      this.responses.push(data)
     },
   },
   watch: {

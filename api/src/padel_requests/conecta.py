@@ -1,5 +1,6 @@
 import json
 import requests
+from src.helpers import time_to_float
 
 URL = "http://www.clubconecta.cl/booking/srvc.aspx/ObtenerCuadro"
 
@@ -29,11 +30,14 @@ def get_conecta_schedule(date: str) -> dict:
     courts = [
         get_info_from_court(court)
         for court in response["Columnas"]
-        if court["TextoSecundario"] == "Pádel"
+        if court.get("TextoSecundario") == "Pádel"
+        or "Pádel" in court.get("TextoPrincipal", "")
     ]
     return {
         "initial_time": response["StrHoraInicio"],
+        "initial_time_float": time_to_float(response["StrHoraInicio"]),
         "end_time": response["StrHoraFin"],
+        "end_time_float": time_to_float(response["StrHoraFin"]),
         "name": response["Nombre"],
         "courts": courts,
     }
@@ -43,7 +47,9 @@ def get_info_from_court(court: dict) -> dict:
     bookings = [
         {
             "initial_time": booking["StrHoraInicio"],
+            "initial_time_float": time_to_float(booking["StrHoraInicio"]),
             "end_time": booking["StrHoraFin"],
+            "end_time_float": time_to_float(booking["StrHoraFin"]),
             "total_time": booking["Minutos"],
         }
         for booking in court["Ocupaciones"]
@@ -52,7 +58,9 @@ def get_info_from_court(court: dict) -> dict:
     fixed_times = [
         {
             "initial_time": fixed_time["StrHoraInicio"],
+            "initial_time_float": time_to_float(fixed_time["StrHoraInicio"]),
             "end_time": fixed_time["StrHoraFin"],
+            "end_time_float": time_to_float(fixed_time["StrHoraFin"]),
             "total_time": fixed_time["Minutos"],
             "valid": fixed_time["Clickable"],
         }
@@ -61,6 +69,7 @@ def get_info_from_court(court: dict) -> dict:
     fixed_times.sort(key=lambda x: x["initial_time"])
     return {
         "name": court["TextoPrincipal"],
+        "provider": "Conecta",
         "bookings": bookings,
         "fixed_times": fixed_times,
     }
