@@ -19,7 +19,9 @@ class BaseClient:
 
         response = response["d"]
         courts = [
-            self.get_info_from_court(court)
+            self.get_info_from_court(
+                court, response["StrHoraInicio"], response["StrHoraFin"]
+            )
             for court in response["Columnas"]
             if court.get("TextoSecundario") == "Pádel"
             or "Pádel" in court.get("TextoPrincipal", "")
@@ -29,12 +31,12 @@ class BaseClient:
             "initial_time_float": time_to_float(response["StrHoraInicio"]),
             "end_time": response["StrHoraFin"],
             "end_time_float": time_to_float(response["StrHoraFin"]),
-            "name": response["Nombre"],
+            "name": self.NAME,
             "courts": courts,
         }
 
-    @staticmethod
-    def get_info_from_court(court: dict) -> dict:
+    @classmethod
+    def get_info_from_court(cls, court: dict, initial_time: str, end_time: str) -> dict:
         bookings = [
             {
                 "initial_time": booking["StrHoraInicio"],
@@ -60,7 +62,11 @@ class BaseClient:
         fixed_times.sort(key=lambda x: x["initial_time"])
         return {
             "name": court["TextoPrincipal"],
-            "provider": "Conecta",
+            "provider": cls.NAME,
             "bookings": bookings,
             "fixed_times": fixed_times,
+            "initial_time": initial_time,
+            "initial_time_float": time_to_float(initial_time),
+            "end_time": end_time,
+            "end_time_float": time_to_float(end_time),
         }

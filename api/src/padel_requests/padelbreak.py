@@ -2,7 +2,7 @@ from src.padel_requests.base import BaseClient
 from src.memoization_decorator import cache_decorator
 
 
-class ConectaClient(BaseClient):
+class PadelBreakClient(BaseClient):
     URL = "http://padelbreak.cl/booking/srvc.aspx/ObtenerCuadro"
 
     HEADERS = {

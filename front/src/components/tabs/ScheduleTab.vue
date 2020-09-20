@@ -52,6 +52,7 @@ export default {
     pickedDate: function(value) {
       this.responses = []
       this.fetchProvider('conecta', value)
+      this.fetchProvider('padelbreak', value)
     },
   },
 }
