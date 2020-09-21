@@ -8,7 +8,7 @@ with open("tests/padel_requests/response.json", "rb") as file:
 
 def test_get_info_from_court(snapshot):
     client = ConectaClient()
-    result = client.get_info_from_court(RESPONSE["d"]["Columnas"][4])
+    result = client.get_info_from_court(RESPONSE["d"]["Columnas"][4], "09:00", "23:00")
     snapshot.assert_match(result)
 
 

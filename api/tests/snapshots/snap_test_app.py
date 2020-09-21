@@ -40,6 +40,8 @@ snapshots['test_send_reminder 1'] = {
                     'total_time': 60
                 }
             ],
+            'end_time': '23:00',
+            'end_time_float': 23,
             'fixed_times': [
                 {
                     'end_time': '12:00',
@@ -82,6 +84,8 @@ snapshots['test_send_reminder 1'] = {
                     'valid': True
                 }
             ],
+            'initial_time': '09:00',
+            'initial_time_float': 9,
             'name': 'Pádel 1',
             'provider': 'Conecta'
         },
@@ -95,6 +99,8 @@ snapshots['test_send_reminder 1'] = {
                     'total_time': 630
                 }
             ],
+            'end_time': '23:00',
+            'end_time_float': 23,
             'fixed_times': [
                 {
                     'end_time': '11:00',
@@ -153,6 +159,8 @@ snapshots['test_send_reminder 1'] = {
                     'valid': False
                 }
             ],
+            'initial_time': '09:00',
+            'initial_time_float': 9,
             'name': 'Pádel 2',
             'provider': 'Conecta'
         },
@@ -180,6 +188,8 @@ snapshots['test_send_reminder 1'] = {
                     'total_time': 60
                 }
             ],
+            'end_time': '23:00',
+            'end_time_float': 23,
             'fixed_times': [
                 {
                     'end_time': '12:00',
@@ -230,6 +240,8 @@ snapshots['test_send_reminder 1'] = {
                     'valid': True
                 }
             ],
+            'initial_time': '09:00',
+            'initial_time_float': 9,
             'name': 'Pádel 3',
             'provider': 'Conecta'
         },
@@ -243,6 +255,8 @@ snapshots['test_send_reminder 1'] = {
                     'total_time': 630
                 }
             ],
+            'end_time': '23:00',
+            'end_time_float': 23,
             'fixed_times': [
                 {
                     'end_time': '11:00',
@@ -301,6 +315,8 @@ snapshots['test_send_reminder 1'] = {
                     'valid': False
                 }
             ],
+            'initial_time': '09:00',
+            'initial_time_float': 9,
             'name': 'Pádel 4',
             'provider': 'Conecta'
         },
@@ -335,6 +351,8 @@ snapshots['test_send_reminder 1'] = {
                     'total_time': 480
                 }
             ],
+            'end_time': '23:00',
+            'end_time_float': 23,
             'fixed_times': [
                 {
                     'end_time': '10:30',
@@ -409,6 +427,8 @@ snapshots['test_send_reminder 1'] = {
                     'valid': False
                 }
             ],
+            'initial_time': '09:00',
+            'initial_time_float': 9,
             'name': 'Pádel 5',
             'provider': 'Conecta'
         }
@@ -417,5 +437,5 @@ snapshots['test_send_reminder 1'] = {
     'end_time_float': 23,
     'initial_time': '09:00',
     'initial_time_float': 9,
-    'name': 'Club Conecta'
+    'name': 'Conecta'
 }
