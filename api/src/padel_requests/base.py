@@ -8,6 +8,7 @@ class BaseClient:
     HEADERS = None
     COOKIES = None
     NAME = None
+    FILTER = ""
 
     def get_schedule(self, date: str):
         response = requests.post(
@@ -18,13 +19,13 @@ class BaseClient:
         ).json()
 
         response = response["d"]
+
         courts = [
             self.get_info_from_court(
                 court, response["StrHoraInicio"], response["StrHoraFin"]
             )
             for court in response["Columnas"]
-            if court.get("TextoSecundario") == "Pádel"
-            or "Pádel" in court.get("TextoPrincipal", "")
+            if self.FILTER in court.get("TextoPrincipal", "")
         ]
         return {
             "initial_time": response["StrHoraInicio"],
@@ -60,8 +61,11 @@ class BaseClient:
             for fixed_time in court["HorariosFijos"]
         ]
         fixed_times.sort(key=lambda x: x["initial_time"])
+        name = court["TextoPrincipal"]
+        if "(DOBLES)" in name:
+            name = name[:-8].strip()
         return {
-            "name": court["TextoPrincipal"],
+            "name": name,
             "provider": cls.NAME,
             "bookings": bookings,
             "fixed_times": fixed_times,

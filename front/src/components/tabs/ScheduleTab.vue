@@ -1,23 +1,42 @@
 <template>
   <div>
-    <v-row justify="space-around">
-      <v-date-picker
-        no-title
-        v-model="pickedDate"
-        first-day-of-week="1"
-        :min="minDate"
-        :max="maxDate"
-      />
+    <v-row>
+      <v-col class="ml-4">
+        <h1 class="schedule-title">
+          Encuentra tu cancha!
+        </h1>
+        <h2 class="schedule-title">
+          Canchas de padel en el sector oriente
+        </h2>
+      </v-col>
+      <v-col class="py-0">
+        <v-date-picker
+          no-title
+          v-model="pickedDate"
+          first-day-of-week="1"
+          :min="minDate"
+          :max="maxDate"
+        />
+      </v-col>
+      <v-col class="justify-start align-start">
+        <v-checkbox v-model="conecta" label="Conecta" class="py-0 my-0 mt-4" />
+        <v-checkbox
+          v-model="padelbreak"
+          label="Padel Break"
+          class="py-0 my-0"
+        />
+        <v-checkbox v-model="santuario" label="Santuario" class="py-0 my-0" />
+        <v-checkbox v-model="bullpadel" label="Bull Padel" class="py-0 my-0" />
+      </v-col>
     </v-row>
-    <div>{{ names }}</div>
     <courts-table :providers="responses" />
   </div>
 </template>
 
 <script>
 import CourtsTable from '@/components/CourtsTable'
-const apiURL = 'http://localhost:8000/get_schedule'
-// const apiURL = 'https://padel-api-54td4ousva-uc.a.run.app/get_schedule'
+// const apiURL = 'http://localhost:8000/get_schedule'
+const apiURL = 'https://padel-api-54td4ousva-uc.a.run.app/get_schedule'
 const currentDate = new Date()
 const twoWeeksAhead = new Date()
 twoWeeksAhead.setDate(twoWeeksAhead.getDate() + 14)
@@ -29,16 +48,14 @@ export default {
       responses: [],
       minDate: currentDate.toISOString(),
       maxDate: twoWeeksAhead.toISOString(),
+      conecta: true,
+      padelbreak: true,
+      santuario: true,
+      bullpadel: true,
     }
   },
   components: {
     CourtsTable,
-  },
-  computed: {
-    names() {
-      const names = this.responses.map(response => response.name).join(', ')
-      return 'Clubes: ' + names
-    },
   },
   methods: {
     async fetchProvider(provider, date) {
@@ -47,12 +64,20 @@ export default {
       console.log(data)
       this.responses.push(data)
     },
+    retrieveProviders(value) {
+      this.responses = []
+      if (this.conecta) this.fetchProvider('conecta', value)
+      if (this.padelbreak) this.fetchProvider('padelbreak', value)
+      if (this.santuario) this.fetchProvider('santuario', value)
+      if (this.bullpadel) this.fetchProvider('bullpadel', value)
+    },
+  },
+  created() {
+    this.retrieveProviders(currentDate.toISOString().slice(0, 10))
   },
   watch: {
     pickedDate: function(value) {
-      this.responses = []
-      this.fetchProvider('conecta', value)
-      this.fetchProvider('padelbreak', value)
+      this.retrieveProviders(value)
     },
   },
 }

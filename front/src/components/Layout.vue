@@ -1,13 +1,7 @@
 <template>
-  <v-card color="basil">
-    <v-card-title class="text-center justify-center py-6">
-      <h1 class="font-weight-bold display-3 basil--text">
-        Encuentra tu cancha de padel!
-      </h1>
-    </v-card-title>
-
-    <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
-      <v-tab v-for="item in items" :key="item">
+  <div>
+    <v-tabs v-model="tab" grow>
+      <v-tab v-for="item in items" :key="item" class="bg-black">
         {{ item }}
       </v-tab>
     </v-tabs>
@@ -19,11 +13,8 @@
       <v-tab-item>
         <prices-tab />
       </v-tab-item>
-      <v-tab-item>
-        <prices-tab />
-      </v-tab-item>
     </v-tabs-items>
-  </v-card>
+  </div>
 </template>
 
 <script>
@@ -38,7 +29,7 @@ export default {
   data() {
     return {
       tab: null,
-      items: ['Canchas', 'Tarifas', 'Ubicaciones'],
+      items: ['Canchas', 'Clubes'],
     }
   },
 }
@@ -46,10 +37,10 @@ export default {
 
 <style>
 /* Helper classes */
-.basil {
-  background-color: #fffbe6 !important;
-}
-.basil--text {
-  color: #356859 !important;
+.bg-black {
+  background-color: #000 !important;
+  color: #fff !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
 }
 </style>

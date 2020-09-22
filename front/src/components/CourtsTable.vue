@@ -178,9 +178,9 @@ export default {
 }
 
 .item {
-  font-size: 14px;
-  padding-left: 10px;
-  padding-right: 10px;
+  font-size: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .item-INVALID {
   background-color: #f2f2f2;
@@ -198,6 +198,5 @@ td.item-BOOKING {
 
 .item-AVAILABLE {
   background-color: #ffffff;
-  font-size: 10px;
 }
 </style>
