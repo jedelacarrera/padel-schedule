@@ -30,5 +30,4 @@ class SantuarioClient(BaseClient):
     @cache_decorator("santuario", 60, index=1)
     def get_schedule(self, date: str):
         result = super().get_schedule(date)
-        # print(result)
         return result

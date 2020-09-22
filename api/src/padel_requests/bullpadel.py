@@ -29,5 +29,4 @@ class BullPadelClient(BaseClient):
     @cache_decorator("bullpadel", 60, index=1)
     def get_schedule(self, date: str):
         result = super().get_schedule(date)
-        print(result)
         return result
