@@ -59,10 +59,13 @@ export default {
   },
   methods: {
     async fetchProvider(provider, date) {
-      const response = await fetch(`${apiURL}/${provider}/${date}`)
-      const data = await response.json()
-      console.log(data)
-      this.responses.push(data)
+      try {
+        const response = await fetch(`${apiURL}/${provider}/${date}`)
+        const data = await response.json()
+        this.responses.push(data)
+      } catch (error) {
+        console.log(error)
+      }
     },
     retrieveProviders(value) {
       this.responses = []

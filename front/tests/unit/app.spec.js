@@ -14,6 +14,6 @@ describe('App', () => {
   })
 
   it('Check App', () => {
-    expect(wrapper.text()).toContain('Encuentra tu cancha de padel!')
+    expect(wrapper.text()).toContain('Encuentra tu cancha!')
   })
 })
