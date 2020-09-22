@@ -6,7 +6,7 @@
           <th v-for="(court, index) in courts" :key="index" class="header">
             <div>
               <h5>{{ court.provider }}</h5>
-              <p>({{ court.name }})</p>
+              <p>{{ court.name }}</p>
             </div>
           </th>
         </tr>
@@ -16,16 +16,31 @@
             :key="index"
             :rowspan="elem.rowspan"
             :class="'item item-' + elem.type"
+            @click="select(elem)"
           >
             {{ elem.initial_time }} - {{ elem.end_time }}
           </td>
         </tr>
       </table>
     </div>
+    <booking-modal
+      :provider="selectedItem.provider"
+      v-if="selectedItem"
+      @cancel="selectedItem = null"
+    />
   </div>
 </template>
 
 <script>
+import BookingModal from '@/components/BookingModal'
+
+const INVALID_OPTION = {
+  initial_time: '',
+  end_time: '',
+  type: 'INVALID',
+  rowspan: 1,
+}
+
 export default {
   props: {
     providers: {
@@ -33,8 +48,13 @@ export default {
       default: () => [],
     },
   },
+  components: {
+    BookingModal,
+  },
   data() {
-    return {}
+    return {
+      selectedItem: null,
+    }
   },
   computed: {
     commonTimes() {
@@ -66,24 +86,38 @@ export default {
     },
   },
   methods: {
+    select(item) {
+      if (!['AVAILABLE', 'FIXED_TIME'].includes(item.type)) return
+      this.selectedItem = item
+      console.log('SELECTED', item)
+    },
     getElementsFromTime(time) {
       const elements = this.courts.map(court =>
         this.getElementFromCourtAndTime(court, time)
       )
-      console.log(
-        time,
-        elements.map(elem => (elem ? elem.type + elem.rowspan : elem))
-      )
       return elements.filter(elem => elem !== false)
     },
     getElementFromCourtAndTime(court, time) {
-      let value = { rowspan: 1, type: 'AVAILABLE' }
+      if (time < court.initial_time_float) return INVALID_OPTION
+      if (time >= court.end_time_float) return INVALID_OPTION
+
+      const halfHour = time % 1 > 0
+      let value = {
+        rowspan: 1,
+        type: 'AVAILABLE',
+        initial_time: halfHour ? `${time - 0.5}:30` : `${time}:00`,
+        end_time: halfHour ? `${time + 0.5}:00` : `${time}:30`,
+        name: court.name,
+        provider: court.provider,
+      }
       court.bookings.forEach(booking => {
         if (booking.initial_time_float === time) {
           value = {
             ...booking,
             type: 'BOOKING',
             rowspan: booking.total_time / 30,
+            name: court.name,
+            provider: court.provider,
           }
         } else if (
           booking.initial_time_float < time &&
@@ -101,6 +135,8 @@ export default {
             ...fixedTime,
             type: 'FIXED_TIME',
             rowspan: fixedTime.total_time / 30,
+            name: court.name,
+            provider: court.provider,
           }
         } else if (
           fixedTime.initial_time_float < time &&
@@ -110,12 +146,7 @@ export default {
         }
       })
       if (value && value.type === 'AVAILABLE' && court.fixed_times.length) {
-        return {
-          initial_time: '',
-          end_time: '',
-          type: 'INVALID',
-          rowspan: 1,
-        }
+        return INVALID_OPTION
       }
       return value
     },
@@ -129,6 +160,8 @@ export default {
 }
 
 .courts-table th {
+  padding-left: 5px;
+  padding-right: 5px;
   border: 0;
   background-color: #000000;
   color: #fff;
@@ -145,9 +178,9 @@ export default {
 }
 
 .item {
-  font-size: 14px;
-  padding-left: 10px;
-  padding-right: 10px;
+  font-size: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .item-INVALID {
   background-color: #f2f2f2;
@@ -159,8 +192,11 @@ td.item-BOOKING {
   border: 1px solid #dd5a5a;
 }
 
-.item-AVAILABLE,
 .item-FIXED_TIME {
+  background-color: #ffffff;
+}
+
+.item-AVAILABLE {
   background-color: #ffffff;
 }
 </style>
