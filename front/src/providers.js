@@ -71,4 +71,18 @@ export default {
     ],
     address: 'Avenida El Cóndor 743, Huechuraba',
   },
+  'Padel Oriente': {
+    url: 'http://padeloriente.cl/Booking/Grid.aspx',
+    prices: [
+      {
+        time: 'Lunes a viernes 9 a 18, sábados y domingos 14 a 18',
+        price: '$14.000 ($18.000 / 90 min)',
+      },
+      {
+        time: 'Todos los días 18 a 23 hrs, sábados y domingos 9 a 14 hrs',
+        price: '$20.000',
+      },
+    ],
+    address: 'Av. Kennedy 9351, Las Condes. (Club Palestino)',
+  },
 }

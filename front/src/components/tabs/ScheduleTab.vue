@@ -27,6 +27,11 @@
         />
         <v-checkbox v-model="santuario" label="Santuario" class="py-0 my-0" />
         <v-checkbox v-model="bullpadel" label="Bull Padel" class="py-0 my-0" />
+        <v-checkbox
+          v-model="padeloriente"
+          label="Padel oriente"
+          class="py-0 my-0"
+        />
       </v-col>
     </v-row>
     <courts-table :providers="responses" />
@@ -35,8 +40,8 @@
 
 <script>
 import CourtsTable from '@/components/CourtsTable'
-// const apiURL = 'http://localhost:8000/get_schedule'
 const apiURL = 'https://padel-api-54td4ousva-uc.a.run.app/get_schedule'
+// const apiURL = 'http://localhost:8000/get_schedule'
 const currentDate = new Date()
 const twoWeeksAhead = new Date()
 twoWeeksAhead.setDate(twoWeeksAhead.getDate() + 14)
@@ -52,6 +57,7 @@ export default {
       padelbreak: true,
       santuario: true,
       bullpadel: true,
+      padeloriente: true,
     }
   },
   components: {
@@ -73,6 +79,7 @@ export default {
       if (this.padelbreak) this.fetchProvider('padelbreak', value)
       if (this.santuario) this.fetchProvider('santuario', value)
       if (this.bullpadel) this.fetchProvider('bullpadel', value)
+      if (this.padeloriente) this.fetchProvider('padeloriente', value)
     },
   },
   created() {
