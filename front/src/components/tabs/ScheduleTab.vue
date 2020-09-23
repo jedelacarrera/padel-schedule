@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-col class="ml-4">
+      <v-col class="mx-4">
         <h1 class="schedule-title">
           Encuentra tu cancha!
         </h1>
@@ -18,7 +18,7 @@
           :max="maxDate"
         />
       </v-col>
-      <v-col class="justify-start align-start">
+      <v-col class="justify-start align-start ml-4">
         <v-checkbox v-model="conecta" label="Conecta" class="py-0 my-0 mt-4" />
         <v-checkbox
           v-model="padelbreak"

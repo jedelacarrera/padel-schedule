@@ -3,7 +3,7 @@
     <v-row>
       <v-col
         v-for="provider in Object.keys(providers)"
-        cols="6"
+        :cols="$vuetify.breakpoint.xs ? '12' : '6'"
         :key="provider"
         class="my-4"
       >

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="align-center justify-center d-flex">
+    <div class="overflow-x">
       <table class="courts-table">
         <tr>
           <th v-for="(court, index) in courts" :key="index" class="header">
@@ -197,5 +197,8 @@ td.item-BOOKING {
 
 .item-AVAILABLE {
   background-color: #ffffff;
+}
+div.overflow-x {
+  overflow-x: auto;
 }
 </style>
