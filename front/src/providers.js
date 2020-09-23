@@ -33,7 +33,8 @@ export default {
         price: '$12.000',
       },
     ],
-    address: 'Monseñor Álvaro del Portillo 12455, Las Condes',
+    address:
+      'Monseñor Álvaro del Portillo 12455, Las Condes. (Universidad de los Andes)',
   },
   Santuario: {
     url: 'https://clubsantuariodelvalle.matchpoint.com.es/Booking/Grid.aspx',
@@ -51,7 +52,8 @@ export default {
         price: '$14.000',
       },
     ],
-    address: 'Av. Boulevard Jardín de los Pájaros Norte #4666, Lo Barnechea',
+    address:
+      'Av. Boulevard Jardín de los Pájaros Norte #4666, Lo Barnechea. (Santuario del Valle)',
   },
   'Bull Padel': {
     url: 'http://www.bullpadelcenter.cl/Booking/Grid.aspx',
@@ -69,7 +71,7 @@ export default {
         price: '$14.000',
       },
     ],
-    address: 'Avenida El Cóndor 743, Huechuraba',
+    address: 'Avenida El Cóndor 743, Huechuraba. (Ciudad Empresarial)',
   },
   'Padel Oriente': {
     url: 'http://padeloriente.cl/Booking/Grid.aspx',
