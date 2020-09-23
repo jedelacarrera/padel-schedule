@@ -179,8 +179,7 @@ export default {
 
 .item {
   font-size: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 0;
 }
 .item-INVALID {
   background-color: #f2f2f2;

@@ -16,7 +16,7 @@
             <span>Dirección:</span> {{ providers[provider].address }}
           </li>
         </div>
-        <v-btn><a :href="providers[provider].url">Ir a reservar</a></v-btn>
+        <v-btn><a :href="providers[provider].url">Ir a la página web</a></v-btn>
       </v-col>
     </v-row>
   </div>

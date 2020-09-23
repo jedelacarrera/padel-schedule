@@ -6,14 +6,8 @@
       </v-tab>
     </v-tabs>
 
-    <v-tabs-items v-model="tab">
-      <v-tab-item>
-        <schedule-tab />
-      </v-tab-item>
-      <v-tab-item>
-        <prices-tab />
-      </v-tab-item>
-    </v-tabs-items>
+    <schedule-tab v-if="tab === 0" />
+    <prices-tab v-else />
   </div>
 </template>
 
