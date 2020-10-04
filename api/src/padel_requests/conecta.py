@@ -25,6 +25,6 @@ class ConectaClient(BaseClient):
     NAME = "Conecta"
     FILTER = "Pádel"
 
-    @cache_decorator("conecta", 60, index=1)
+    @cache_decorator("conecta", 120, index=1)
     def get_schedule(self, date: str):
         return super().get_schedule(date)

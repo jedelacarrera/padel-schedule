@@ -3,10 +3,10 @@
     <v-row>
       <v-col class="mx-4">
         <h1 class="schedule-title">
-          Encuentra tu cancha!
+          ¡Encuentra tu cancha!
         </h1>
         <h2 class="schedule-title">
-          Canchas de padel en el sector oriente
+          Canchas de padel en el sector oriente de Santiago
         </h2>
       </v-col>
       <v-col class="py-0">
@@ -32,6 +32,7 @@
           label="Padel oriente"
           class="py-0 my-0"
         />
+        <v-checkbox v-model="altopadel" label="Alto padel" class="py-0 my-0" />
       </v-col>
     </v-row>
     <courts-table :providers="responses" />
@@ -42,48 +43,74 @@
 import CourtsTable from '@/components/CourtsTable'
 const apiURL = 'https://padel-api-54td4ousva-uc.a.run.app/get_schedule'
 // const apiURL = 'http://localhost:8000/get_schedule'
-const currentDate = new Date()
+const currentDate = new Date().toISOString().slice(0, 10)
 const twoWeeksAhead = new Date()
 twoWeeksAhead.setDate(twoWeeksAhead.getDate() + 14)
+
+const DEFAULT_RESPONSES = JSON.stringify({
+  conecta: { courts: [] },
+  padelbreak: { courts: [] },
+  santuario: { courts: [] },
+  bullpadel: { courts: [] },
+  padeloriente: { courts: [] },
+  altopadel: { courts: [] },
+})
 
 export default {
   data() {
     return {
-      pickedDate: currentDate.toISOString().slice(0, 10),
-      responses: [],
-      minDate: currentDate.toISOString(),
+      pickedDate: currentDate,
+      responsesDict: JSON.parse(DEFAULT_RESPONSES),
+      minDate: currentDate,
       maxDate: twoWeeksAhead.toISOString(),
       conecta: true,
       padelbreak: true,
       santuario: true,
       bullpadel: true,
       padeloriente: true,
+      altopadel: true,
     }
   },
   components: {
     CourtsTable,
+  },
+  computed: {
+    responses() {
+      const responses = []
+      if (this.conecta) responses.push(this.responsesDict.conecta)
+      if (this.padelbreak) responses.push(this.responsesDict.padelbreak)
+      if (this.santuario) responses.push(this.responsesDict.santuario)
+      if (this.bullpadel) responses.push(this.responsesDict.bullpadel)
+      if (this.padeloriente) responses.push(this.responsesDict.padeloriente)
+      if (this.altopadel) responses.push(this.responsesDict.altopadel)
+      return responses
+    },
   },
   methods: {
     async fetchProvider(provider, date) {
       try {
         const response = await fetch(`${apiURL}/${provider}/${date}`)
         const data = await response.json()
-        this.responses.push(data)
+        if (date === this.pickedDate) {
+          this.responsesDict[provider] = data
+        }
       } catch (error) {
         console.log(error)
       }
     },
     retrieveProviders(value) {
-      this.responses = []
-      if (this.conecta) this.fetchProvider('conecta', value)
-      if (this.padelbreak) this.fetchProvider('padelbreak', value)
-      if (this.santuario) this.fetchProvider('santuario', value)
-      if (this.bullpadel) this.fetchProvider('bullpadel', value)
-      if (this.padeloriente) this.fetchProvider('padeloriente', value)
+      this.responsesDict = JSON.parse(DEFAULT_RESPONSES)
+
+      this.fetchProvider('conecta', value)
+      this.fetchProvider('padelbreak', value)
+      this.fetchProvider('santuario', value)
+      this.fetchProvider('bullpadel', value)
+      this.fetchProvider('padeloriente', value)
+      this.fetchProvider('altopadel', value)
     },
   },
   created() {
-    this.retrieveProviders(currentDate.toISOString().slice(0, 10))
+    this.retrieveProviders(currentDate)
   },
   watch: {
     pickedDate: function(value) {

@@ -87,4 +87,26 @@ export default {
     ],
     address: 'Av. Kennedy 9351, Las Condes. (Club Palestino)',
   },
+  'Alto Padel': {
+    url: 'http://www.altopadel.cl/Booking/Grid.aspx',
+    prices: [
+      {
+        time: 'Lunes a viernes 9 a 18, sábados y domingos 14 a 16',
+        price: '$10.000',
+      },
+      {
+        time: 'Lunes a viernes de 18:00 a 23:30 hrs.',
+        price: '$20.000',
+      },
+      {
+        time: 'Lunes a viernes desde las  22:00 hrs.',
+        price: '$15.000',
+      },
+      {
+        time: 'Sábado y domingo 9 a 14 y 16 a 23:30',
+        price: '$14.000',
+      },
+    ],
+    address: 'Avenida Las Condes 11755, Las Condes (Corfo)',
+  },
 }

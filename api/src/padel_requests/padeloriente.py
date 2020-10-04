@@ -26,7 +26,7 @@ class PadelOriente(BaseClient):
     NAME = "Padel Oriente"
     FILTER = "Cancha"
 
-    @cache_decorator("padeloriente", 60, index=1)
+    @cache_decorator("padeloriente", 120, index=1)
     def get_schedule(self, date: str):
         result = super().get_schedule(date)
         return result
