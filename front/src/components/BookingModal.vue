@@ -7,13 +7,20 @@
     :value="true"
   >
     <v-card class="pa-4">
-      <h2>{{ provider }}</h2>
+      <v-row no-gutters>
+        <v-col cols="11">
+          <h2>{{ provider }}</h2>
+        </v-col>
+        <v-col cols="1" class="d-flex justify-end align-start">
+          <v-icon @click="cancel">mdi-close</v-icon>
+        </v-col>
+      </v-row>
       <div class="d-flex flex-column align-start pa-4">
         <li v-for="(item, index) in prices" :key="index">
           <span>{{ item.time }}:</span> {{ item.price }}
         </li>
       </div>
-      <v-btn><a :href="url">Ir a reservar</a></v-btn>
+      <v-btn><a :href="url" target="_blank">Ir a reservar</a></v-btn>
     </v-card>
   </v-dialog>
 </template>
