@@ -29,7 +29,9 @@
             :class="'item item-' + elem.type"
             @click="select(elem)"
           >
-            {{ elem.initial_time }} - {{ elem.end_time }}
+            {{ elem.initial_time }}
+            {{ elem.end_time ? '-' : '' }}
+            {{ elem.end_time }}
           </td>
         </tr>
       </table>
