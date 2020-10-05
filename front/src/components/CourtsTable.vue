@@ -3,11 +3,22 @@
     <div class="overflow-x">
       <table class="courts-table">
         <tr>
-          <th v-for="(court, index) in courts" :key="index" class="header">
-            <div>
-              <h5>{{ court.provider }}</h5>
-              <p>{{ court.name }}</p>
-            </div>
+          <th
+            v-for="(provider, index) in providers"
+            :key="index"
+            :colspan="provider.courts.length"
+            class="border-left"
+          >
+            <h5>{{ provider.name }}</h5>
+          </th>
+        </tr>
+        <tr>
+          <th
+            v-for="(court, index) in courtsHeaders"
+            :key="index"
+            :class="court.border"
+          >
+            <p>{{ court.name }}</p>
           </th>
         </tr>
         <tr v-for="time in commonTimes" :key="time">
@@ -69,6 +80,19 @@ export default {
         (courts, provider) => courts.concat(provider.courts),
         []
       )
+    },
+    courtsHeaders() {
+      const headers = []
+      this.providers.forEach(provider => {
+        provider.courts.forEach((court, index) => {
+          if (index === 0) {
+            headers.push({ name: court.name, border: 'border-left' })
+          } else {
+            headers.push({ name: court.name, border: '' })
+          }
+        })
+      })
+      return headers
     },
     initialTime() {
       return this.providers.reduce(
@@ -166,6 +190,10 @@ export default {
   background-color: #000000;
   color: #fff;
   font-weight: normal;
+}
+
+th.border-left {
+  border-left: solid 1px white;
 }
 
 .courts-table th p {

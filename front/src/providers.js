@@ -12,7 +12,7 @@ export default {
       },
       {
         time: 'Sábados y domingos',
-        price: 'No disponible',
+        price: '$20.000 por 90 minutos',
       },
     ],
     address: 'Av. El Rodeo 12.699, Lo Barnechea',
