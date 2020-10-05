@@ -37,4 +37,7 @@ export default {
   font-size: 18px !important;
   font-weight: bold !important;
 }
+.v-tabs-slider-wrapper {
+  height: 4px !important;
+}
 </style>
