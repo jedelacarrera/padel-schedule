@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-col class="mx-4">
+      <v-col class="mx-4" order="1">
         <h1 class="schedule-title">
           ¡Encuentra tu cancha!
         </h1>
@@ -9,7 +9,7 @@
           Canchas de padel en el sector oriente de Santiago
         </h2>
       </v-col>
-      <v-col class="py-0">
+      <v-col class="pt-0 pb-2" :order="$vuetify.breakpoint.xs ? '3' : '2'">
         <v-date-picker
           no-title
           v-model="pickedDate"
@@ -18,7 +18,10 @@
           :max="maxDate"
         />
       </v-col>
-      <v-col class="justify-start align-start ml-4">
+      <v-col
+        class="justify-start align-start ml-4"
+        :order="$vuetify.breakpoint.xs ? '2' : '3'"
+      >
         <v-checkbox v-model="conecta" label="Conecta" class="py-0 my-0 mt-4" />
         <v-checkbox
           v-model="padelbreak"

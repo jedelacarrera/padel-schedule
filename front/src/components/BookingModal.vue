@@ -19,6 +19,7 @@
         <li v-for="(item, index) in prices" :key="index">
           <span>{{ item.time }}:</span> {{ item.price }}
         </li>
+        <li class="py-3"><span>Dirección:</span> {{ address }}</li>
       </div>
       <v-btn><a :href="url" target="_blank">Ir a reservar</a></v-btn>
     </v-card>
@@ -37,14 +38,16 @@ export default {
   },
   computed: {
     url() {
-      console.log('Provider', this.provider)
-      console.log('Providers', providers)
-      const provider = providers[this.provider] || {}
+      const provider = providers[this.provider] || { url: '' }
       return provider.url
     },
+    address() {
+      const provider = providers[this.provider] || { address: '' }
+      return provider.address
+    },
     prices() {
-      const provider = providers[this.provider] || {}
-      return provider.prices || []
+      const provider = providers[this.provider] || { prices: [] }
+      return provider.prices
     },
   },
   methods: {
