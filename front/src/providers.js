@@ -109,4 +109,22 @@ export default {
     ],
     address: 'Avenida Las Condes 11755, Las Condes (Corfo)',
   },
+  'Más Padel': {
+    url: 'http://www.maspadel.cl/Booking/Grid.aspx',
+    prices: [
+      {
+        time: 'Lunes a viernes hasta las 18 hrs',
+        price: '$12.000',
+      },
+      {
+        time: 'Lunes a viernes desde las 18 hrs',
+        price: '$20.000',
+      },
+      {
+        time: 'Sábados, domingos y festivos',
+        price: '$16.000',
+      },
+    ],
+    address: 'Camino San Francisco de Asis 199, Las Condes (Club Pato Cornejo)',
+  },
 }

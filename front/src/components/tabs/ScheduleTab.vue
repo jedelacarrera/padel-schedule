@@ -19,10 +19,10 @@
         />
       </v-col>
       <v-col
-        class="justify-start align-start ml-4"
+        class="justify-start align-start ml-4 pb-0"
         :order="$vuetify.breakpoint.xs ? '2' : '3'"
       >
-        <v-checkbox v-model="conecta" label="Conecta" class="py-0 my-0 mt-4" />
+        <v-checkbox v-model="conecta" label="Conecta" class="py-0 my-0" />
         <v-checkbox
           v-model="padelbreak"
           label="Padel Break"
@@ -36,6 +36,7 @@
           class="py-0 my-0"
         />
         <v-checkbox v-model="altopadel" label="Alto padel" class="py-0 my-0" />
+        <v-checkbox v-model="maspadel" label="Más Padel" class="py-0 my-0" />
       </v-col>
     </v-row>
     <courts-table :providers="responses" />
@@ -57,6 +58,7 @@ const DEFAULT_RESPONSES = JSON.stringify({
   bullpadel: { courts: [] },
   padeloriente: { courts: [] },
   altopadel: { courts: [] },
+  maspadel: { courts: [] },
 })
 
 export default {
@@ -72,6 +74,7 @@ export default {
       bullpadel: true,
       padeloriente: true,
       altopadel: true,
+      maspadel: true,
     }
   },
   components: {
@@ -86,6 +89,7 @@ export default {
       if (this.bullpadel) responses.push(this.responsesDict.bullpadel)
       if (this.padeloriente) responses.push(this.responsesDict.padeloriente)
       if (this.altopadel) responses.push(this.responsesDict.altopadel)
+      if (this.maspadel) responses.push(this.responsesDict.maspadel)
       return responses
     },
   },
@@ -110,6 +114,7 @@ export default {
       this.fetchProvider('bullpadel', value)
       this.fetchProvider('padeloriente', value)
       this.fetchProvider('altopadel', value)
+      this.fetchProvider('maspadel', value)
     },
   },
   created() {
