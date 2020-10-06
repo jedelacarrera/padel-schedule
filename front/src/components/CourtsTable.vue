@@ -115,7 +115,6 @@ export default {
     select(item) {
       if (!['AVAILABLE', 'FIXED_TIME'].includes(item.type)) return
       this.selectedItem = item
-      console.log('SELECTED', item)
     },
     getElementsFromTime(time) {
       const elements = this.courts.map(court =>

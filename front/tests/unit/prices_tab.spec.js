@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import { mount, createLocalVue } from '@vue/test-utils'
-import PricesTab from '@/components/tabs/PricesTab.vue'
+import PricesTab from '@/components/PricesTab.vue'
 
 Vue.use(Vuetify)
 const localVue = createLocalVue()
