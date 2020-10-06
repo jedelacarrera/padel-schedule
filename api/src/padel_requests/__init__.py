@@ -5,6 +5,7 @@ from src.padel_requests.santuario import SantuarioClient
 from src.padel_requests.bullpadel import BullPadelClient
 from src.padel_requests.padeloriente import PadelOriente
 from src.padel_requests.altopadel import AltoPadelClient
+from src.padel_requests.maspadel import MasPadelClient
 
 REGEX = re.compile(r"^(202[0-9]).([01]?[0-9]).([0123]?[0-9])$")
 
@@ -16,6 +17,7 @@ PADEL_REQUESTS = {
     "bullpadel": BullPadelClient().get_schedule,
     "padeloriente": PadelOriente().get_schedule,
     "altopadel": AltoPadelClient().get_schedule,
+    "maspadel": MasPadelClient().get_schedule,
 }
 
 
