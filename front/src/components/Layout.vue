@@ -6,14 +6,14 @@
       </v-tab>
     </v-tabs>
 
-    <schedule-tab v-if="tab === 0" />
-    <prices-tab v-else />
+    <schedule-tab v-show="tab === 0" />
+    <prices-tab v-show="tab !== 0" />
   </div>
 </template>
 
 <script>
-import ScheduleTab from '@/components/tabs/ScheduleTab'
-import PricesTab from '@/components/tabs/PricesTab'
+import ScheduleTab from '@/components/ScheduleTab'
+import PricesTab from '@/components/PricesTab'
 
 export default {
   components: {
