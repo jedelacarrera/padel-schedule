@@ -19,6 +19,11 @@
         <v-btn><a :href="providers[provider].url">Ir a la página web</a></v-btn>
       </v-col>
     </v-row>
+    <iframe
+      src="https://www.google.com/maps/d/embed?mid=1nm40WLmTCSSi0acdP7c0ZSQtweCGF8RL"
+      width="100%"
+      height="600"
+    />
   </div>
 </template>
 
