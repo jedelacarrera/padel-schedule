@@ -20,7 +20,7 @@
       </v-col>
     </v-row>
     <iframe
-      src="https://www.google.com/maps/d/embed?mid=1nm40WLmTCSSi0acdP7c0ZSQtweCGF8RL"
+      src="https://www.google.com/maps/d/embed?mid=1nm40WLmTCSSi0acdP7c0ZSQtweCGF8RL&ll=-33.36931928384845%2C-70.59007279073512&z=12"
       width="100%"
       height="600"
     />
