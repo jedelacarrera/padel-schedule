@@ -2,10 +2,10 @@
   <div>
     <v-row>
       <v-col class="mx-4" order="1">
-        <h1 class="schedule-title">
+        <h1 class="schedule-title py-2">
           ¡Encuentra tu cancha!
         </h1>
-        <h2 class="schedule-title">
+        <h2 class="schedule-title py-2">
           Canchas de padel en el sector oriente de Santiago
         </h2>
       </v-col>
@@ -37,6 +37,11 @@
         />
         <v-checkbox v-model="altopadel" label="Alto padel" class="py-0 my-0" />
         <v-checkbox v-model="maspadel" label="Más Padel" class="py-0 my-0" />
+        <v-checkbox
+          v-model="rinconada"
+          label="Club Rinconada"
+          class="py-0 my-0"
+        />
       </v-col>
     </v-row>
     <courts-table :providers="responses" />
@@ -59,6 +64,7 @@ const DEFAULT_RESPONSES = JSON.stringify({
   padeloriente: { courts: [] },
   altopadel: { courts: [] },
   maspadel: { courts: [] },
+  rinconada: { courts: [] },
 })
 
 export default {
@@ -75,6 +81,7 @@ export default {
       padeloriente: true,
       altopadel: true,
       maspadel: true,
+      rinconada: true,
     }
   },
   components: {
@@ -90,6 +97,7 @@ export default {
       if (this.padeloriente) responses.push(this.responsesDict.padeloriente)
       if (this.altopadel) responses.push(this.responsesDict.altopadel)
       if (this.maspadel) responses.push(this.responsesDict.maspadel)
+      if (this.rinconada) responses.push(this.responsesDict.rinconada)
       return responses
     },
   },
@@ -115,6 +123,7 @@ export default {
       this.fetchProvider('padeloriente', value)
       this.fetchProvider('altopadel', value)
       this.fetchProvider('maspadel', value)
+      this.fetchProvider('rinconada', value)
     },
   },
   created() {
@@ -127,3 +136,8 @@ export default {
   },
 }
 </script>
+<style>
+div.v-messages {
+  min-height: 5px;
+}
+</style>

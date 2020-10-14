@@ -127,4 +127,22 @@ export default {
     ],
     address: 'Camino San Francisco de Asis 199, Las Condes (Club Pato Cornejo)',
   },
+  'Club Rinconada': {
+    url: 'http://clubrinconada.cl/Booking/Grid.aspx',
+    prices: [
+      {
+        time: 'Lunes a viernes 7 a 18 hrs',
+        price: '$10.000',
+      },
+      {
+        time: 'Lunes a viernes desde las 18 a 23 hrs',
+        price: '$18.000',
+      },
+      {
+        time: 'Sábados, domingos y festivos',
+        price: '$14.000',
+      },
+    ],
+    address: 'Rinconada El Salto 535, Huechuraba (Ciudad Empresarial)',
+  },
 }

@@ -9,13 +9,14 @@ class BaseClient:
     COOKIES = None
     NAME = None
     FILTER = ""
+    ID_CUADRO = "4"
 
     def get_schedule(self, date: str):
         response = requests.post(
             self.URL,
             headers=self.HEADERS,
             cookies=self.COOKIES,
-            data=json.dumps({"idCuadro": "4", "fecha": date}),  # 16/9/2020
+            data=json.dumps({"idCuadro": self.ID_CUADRO, "fecha": date}),  # 16/9/2020
         ).json()
 
         response = response["d"]
