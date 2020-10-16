@@ -8,6 +8,7 @@
             :key="index"
             :colspan="provider.courts.length"
             class="border-left"
+            @click="select({ provider: provider.name, type: 'HEADER' })"
           >
             <h5>{{ provider.name }}</h5>
           </th>
@@ -17,6 +18,7 @@
             v-for="(court, index) in courtsHeaders"
             :key="index"
             :class="court.border"
+            @click="select({ provider: court.provider, type: 'HEADER' })"
           >
             <p>{{ court.name }}</p>
           </th>
@@ -87,11 +89,11 @@ export default {
       const headers = []
       this.providers.forEach(provider => {
         provider.courts.forEach((court, index) => {
-          if (index === 0) {
-            headers.push({ name: court.name, border: 'border-left' })
-          } else {
-            headers.push({ name: court.name, border: '' })
-          }
+          headers.push({
+            name: court.name,
+            border: index === 0 ? 'border-left' : '',
+            provider: provider.name,
+          })
         })
       })
       return headers
@@ -113,7 +115,7 @@ export default {
   },
   methods: {
     select(item) {
-      if (!['AVAILABLE', 'FIXED_TIME'].includes(item.type)) return
+      if (!['AVAILABLE', 'FIXED_TIME', 'HEADER'].includes(item.type)) return
       this.selectedItem = item
     },
     getElementsFromTime(time) {
