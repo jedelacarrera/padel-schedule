@@ -193,6 +193,7 @@ export default {
   background-color: #000000;
   color: #fff;
   font-weight: normal;
+  cursor: pointer;
 }
 
 th.border-left {
@@ -226,10 +227,12 @@ td.item-BOOKING {
 
 .item-FIXED_TIME {
   background-color: #ffffff;
+  cursor: pointer;
 }
 
 .item-AVAILABLE {
   background-color: #ffffff;
+  cursor: pointer;
 }
 div.overflow-x {
   overflow-x: auto;
