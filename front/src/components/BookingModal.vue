@@ -16,12 +16,14 @@
         </v-col>
       </v-row>
       <div class="d-flex flex-column align-start pa-4">
-        <li v-for="(item, index) in prices" :key="index">
+        <li v-for="(item, index) in providerElem.prices" :key="index">
           <span>{{ item.time }}:</span> {{ item.price }}
         </li>
-        <li class="py-3"><span>Dirección:</span> {{ address }}</li>
+        <li class="py-3"><span>Dirección:</span> {{ providerElem.address }}</li>
       </div>
-      <v-btn><a :href="url" target="_blank">Ir a reservar</a></v-btn>
+      <v-btn>
+        <a :href="providerElem.url" target="_blank">Ir a reservar</a>
+      </v-btn>
     </v-card>
   </v-dialog>
 </template>
@@ -37,17 +39,8 @@ export default {
     },
   },
   computed: {
-    url() {
-      const provider = providers[this.provider] || { url: '' }
-      return provider.url
-    },
-    address() {
-      const provider = providers[this.provider] || { address: '' }
-      return provider.address
-    },
-    prices() {
-      const provider = providers[this.provider] || { prices: [] }
-      return provider.prices
+    providerElem() {
+      return providers[this.provider] || { url: '', address: '', prices: [] }
     },
   },
   methods: {

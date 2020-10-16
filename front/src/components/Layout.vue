@@ -1,9 +1,8 @@
 <template>
   <div>
     <v-tabs v-model="tab" grow>
-      <v-tab v-for="item in items" :key="item" class="bg-black">
-        {{ item }}
-      </v-tab>
+      <v-tab class="bg-black">Canchas</v-tab>
+      <v-tab class="bg-black">Clubes</v-tab>
     </v-tabs>
 
     <schedule-tab v-show="tab === 0" />
@@ -22,8 +21,7 @@ export default {
   },
   data() {
     return {
-      tab: null,
-      items: ['Canchas', 'Clubes'],
+      tab: 0,
     }
   },
 }
@@ -38,6 +36,6 @@ export default {
   font-weight: bold !important;
 }
 .v-tabs-slider-wrapper {
-  height: 4px !important;
+  height: 6px !important;
 }
 </style>
