@@ -172,6 +172,20 @@ export default {
           value = false
         }
       })
+      if (value && value.type === 'FIXED_TIME') {
+        court.bookings.forEach(booking => {
+          if (
+            value.initial_time_float < booking.initial_time_float &&
+            booking.initial_time_float < value.end_time_float
+          ) {
+            value.end_time = booking.initial_time
+            value.end_time_float = booking.initial_time_float
+            value.total_time =
+              (value.end_time_float - value.initial_time_float) * 60
+            value.rowspan = value.total_time / 30
+          }
+        })
+      }
       if (value && value.type === 'AVAILABLE' && court.fixed_times.length) {
         return INVALID_OPTION
       }
