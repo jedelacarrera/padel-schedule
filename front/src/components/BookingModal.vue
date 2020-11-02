@@ -21,8 +21,8 @@
         </li>
         <li class="py-3"><span>Dirección:</span> {{ providerElem.address }}</li>
       </div>
-      <v-btn>
-        <a :href="providerElem.url" target="_blank">Ir a reservar</a>
+      <v-btn @click="goToProvider(providerElem.url)">
+        <a>Ir a la página web</a>
       </v-btn>
     </v-card>
   </v-dialog>
@@ -46,6 +46,9 @@ export default {
   methods: {
     cancel() {
       this.$emit('cancel')
+    },
+    goToProvider(url) {
+      window.open(url)
     },
   },
 }
