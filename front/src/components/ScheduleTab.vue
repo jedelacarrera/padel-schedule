@@ -111,6 +111,7 @@ export default {
         }
       } catch (error) {
         console.log(error)
+        this.responsesDict[provider] = { courts: [] }
       }
     },
     retrieveProviders(value) {

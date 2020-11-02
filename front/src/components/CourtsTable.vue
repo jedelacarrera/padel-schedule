@@ -4,10 +4,10 @@
       <table class="courts-table">
         <tr>
           <th
-            v-for="(provider, index) in providers"
+            v-for="(provider, index) in tableHeaders"
+            class="border-left"
             :key="index"
             :colspan="provider.courts.length"
-            class="border-left"
             @click="select({ provider: provider.name, type: 'HEADER' })"
           >
             <h5>{{ provider.name }}</h5>
@@ -72,6 +72,9 @@ export default {
     }
   },
   computed: {
+    tableHeaders() {
+      return this.providers.filter(provider => provider.courts.length > 0)
+    },
     commonTimes() {
       const commonTimes = [this.initialTime]
       while (commonTimes[commonTimes.length - 1] + 0.5 < this.endTime) {
