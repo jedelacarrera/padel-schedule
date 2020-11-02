@@ -16,10 +16,8 @@
             <span>Dirección:</span> {{ providers[provider].address }}
           </li>
         </div>
-        <v-btn>
-          <a :href="providers[provider].url" target="_blank">
-            Ir a la página web
-          </a>
+        <v-btn @click="goToProvider(providers[provider].url)">
+          <a>Ir a la página web</a>
         </v-btn>
       </v-col>
     </v-row>
@@ -39,6 +37,11 @@ export default {
     return {
       providers,
     }
+  },
+  methods: {
+    goToProvider(url) {
+      window.open(url)
+    },
   },
 }
 </script>

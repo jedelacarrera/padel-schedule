@@ -85,7 +85,7 @@ export default {
     courts() {
       return this.providers.reduce(
         (courts, provider) => courts.concat(provider.courts),
-        []
+        [],
       )
     },
     courtsHeaders() {
@@ -105,14 +105,14 @@ export default {
       return this.providers.reduce(
         (min, value) =>
           value.initial_time_float < min ? value.initial_time_float : min,
-        12
+        12,
       )
     },
     endTime() {
       return this.providers.reduce(
         (max, value) =>
           value.end_time_float > max ? value.end_time_float : max,
-        20
+        20,
       )
     },
   },
@@ -123,7 +123,7 @@ export default {
     },
     getElementsFromTime(time) {
       const elements = this.courts.map(court =>
-        this.getElementFromCourtAndTime(court, time)
+        this.getElementFromCourtAndTime(court, time),
       )
       return elements.filter(elem => elem !== false)
     },

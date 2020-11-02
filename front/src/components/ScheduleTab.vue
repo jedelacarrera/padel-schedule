@@ -2,9 +2,7 @@
   <div>
     <v-row>
       <v-col class="mx-4" order="1">
-        <h1 class="schedule-title py-2">
-          ¡Encuentra tu cancha!
-        </h1>
+        <h1 class="schedule-title py-2">¡Encuentra tu cancha!</h1>
         <h2 class="schedule-title py-2">
           Canchas de padel en el sector oriente de Santiago
         </h2>
@@ -131,7 +129,7 @@ export default {
     this.retrieveProviders(currentDate)
   },
   watch: {
-    pickedDate: function(value) {
+    pickedDate: function (value) {
       this.retrieveProviders(value)
     },
   },
