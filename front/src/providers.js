@@ -37,7 +37,7 @@ export default {
       'Monseñor Álvaro del Portillo 12455, Las Condes. (Universidad de los Andes)',
   },
   Santuario: {
-    url: 'https://clubsantuariodelvalle.matchpoint.com.es/Booking/Grid.aspx',
+    url: 'https://www.tenissantuario.cl/Booking/Grid.aspx',
     prices: [
       {
         time: 'Lunes a Viernes de 9:00 a 18:00 hrs',
