@@ -3,7 +3,7 @@ from src.memoization_decorator import cache_decorator
 
 
 class Rinconada(BaseClient):
-    URL = "http://clubrinconada.cl/booking/srvc.aspx/ObtenerCuadro"
+    URL = "http://clubrinconada.cl/booking/srvc.aspx/"
 
     ID_CUADRO = "5"
 

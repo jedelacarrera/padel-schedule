@@ -9,9 +9,23 @@ CORS(app, support_credentials=True, resources={r"/*": {"origins": "*"}})
 
 @app.route("/get_schedule/<provider>/<date>", methods=["GET"])
 def get_schedule(provider, date):
-    function = PADEL_REQUESTS[provider]
+    function = PADEL_REQUESTS[provider].get_schedule
     date = map_date(date)
     return jsonify(function(date))
+
+
+@app.route("/get_availability/<provider>/<resource>/<date>/<hour>", methods=["GET"])
+def get_availability(provider, resource, date, hour):
+    function = PADEL_REQUESTS[provider].get_availability
+    date = map_date(date)
+    return jsonify(function(resource, date, hour))
+
+
+@app.route("/get_fixed_time_info/<provider>/<resource>/<date>/<hour>", methods=["GET"])
+def get_fixed_time_info(provider, resource, date, hour):
+    function = PADEL_REQUESTS[provider].get_fixed_time_info
+    date = map_date(date)
+    return jsonify(function(resource, date, hour))
 
 
 @app.route("/", methods=["GET"])

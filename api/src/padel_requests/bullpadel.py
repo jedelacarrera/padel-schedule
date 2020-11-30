@@ -3,7 +3,7 @@ from src.memoization_decorator import cache_decorator
 
 
 class BullPadelClient(BaseClient):
-    URL = "http://www.bullpadelcenter.cl/booking/srvc.aspx/ObtenerCuadro"
+    URL = "http://www.bullpadelcenter.cl/booking/srvc.aspx/"
 
     HEADERS = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",  # pylint: disable=line-too-long
