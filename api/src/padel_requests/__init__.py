@@ -12,14 +12,14 @@ REGEX = re.compile(r"^(202[0-9]).([01]?[0-9]).([0123]?[0-9])$")
 
 
 PADEL_REQUESTS = {
-    "conecta": ConectaClient().get_schedule,
-    "padelbreak": PadelBreakClient().get_schedule,
-    "santuario": SantuarioClient().get_schedule,
-    "bullpadel": BullPadelClient().get_schedule,
-    "padeloriente": PadelOriente().get_schedule,
-    "altopadel": AltoPadelClient().get_schedule,
-    "maspadel": MasPadelClient().get_schedule,
-    "rinconada": Rinconada().get_schedule,
+    "conecta": ConectaClient(),
+    "padelbreak": PadelBreakClient(),
+    "santuario": SantuarioClient(),
+    "bullpadel": BullPadelClient(),
+    "padeloriente": PadelOriente(),
+    "altopadel": AltoPadelClient(),
+    "maspadel": MasPadelClient(),
+    "rinconada": Rinconada(),
 }
 
 

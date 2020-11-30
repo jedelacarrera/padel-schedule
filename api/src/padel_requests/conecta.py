@@ -3,7 +3,7 @@ from src.memoization_decorator import cache_decorator
 
 
 class ConectaClient(BaseClient):
-    URL = "http://www.clubconecta.cl/booking/srvc.aspx/ObtenerCuadro"
+    URL = "http://www.clubconecta.cl/booking/srvc.aspx/"
 
     HEADERS = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",  # pylint: disable=line-too-long
@@ -24,6 +24,8 @@ class ConectaClient(BaseClient):
 
     NAME = "Conecta"
     FILTER = "Pádel"
+    TIME_ATTRIBUTE = "idHorario"
+    ID_MODALIDAD = 3
 
     @cache_decorator("conecta", 120, index=1)
     def get_schedule(self, date: str):
