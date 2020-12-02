@@ -26,7 +26,7 @@
         <v-row>
           <v-col cols="4">
             <img
-              :src="providerElem.image"
+              :src="`imgs/${item.provider}.png`"
               height="100"
               :style="{
                 'background-color': providerElem.background,
@@ -34,7 +34,7 @@
               }"
               v-if="providerElem.background"
             />
-            <img v-else height="100" :src="providerElem.image" />
+            <img v-else height="100" :src="`imgs/${item.provider}.png`" />
           </v-col>
           <v-col cols="8">
             <div v-for="option in response.options" :key="option.token">
