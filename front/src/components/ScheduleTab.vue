@@ -42,14 +42,14 @@
         />
       </v-col>
     </v-row>
-    <courts-table :providers="responses" />
+    <courts-table :providers="responses" :date="pickedDate" />
   </div>
 </template>
 
 <script>
 import CourtsTable from '@/components/CourtsTable'
-const apiURL = 'https://padel-api-54td4ousva-uc.a.run.app/get_schedule'
-// const apiURL = 'http://localhost:8000/get_schedule'
+import { getSchedule } from '@/apiUrls'
+
 const currentDate = new Date().toISOString().slice(0, 10)
 const twoWeeksAhead = new Date()
 twoWeeksAhead.setDate(twoWeeksAhead.getDate() + 14)
@@ -102,8 +102,12 @@ export default {
   methods: {
     async fetchProvider(provider, date) {
       try {
-        const response = await fetch(`${apiURL}/${provider}/${date}`)
+        const response = await fetch(`${getSchedule}/${provider}/${date}`)
         const data = await response.json()
+        data.id = provider
+        data.courts.forEach(court => {
+          court.provider = provider
+        })
         if (date === this.pickedDate) {
           this.responsesDict[provider] = data
         }

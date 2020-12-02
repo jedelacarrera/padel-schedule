@@ -8,7 +8,7 @@
             class="border-left"
             :key="index"
             :colspan="provider.courts.length"
-            @click="select({ provider: provider.name, type: 'HEADER' })"
+            @click="select({ provider: provider.id, type: 'HEADER' })"
           >
             <h5>{{ provider.name }}</h5>
           </th>
@@ -26,9 +26,9 @@
         <tr v-for="time in commonTimes" :key="time">
           <td
             v-for="(elem, index) in getElementsFromTime(time)"
-            :key="index"
+            :key="elem.provider + index.toString() + elem.initial_time"
             :rowspan="elem.rowspan"
-            :class="'item item-' + elem.type"
+            :class="`item item-${elem.type} item-${colors}-${elem.provider}`"
             @click="select(elem)"
           >
             {{ elem.initial_time }}
@@ -39,7 +39,8 @@
       </table>
     </div>
     <booking-modal
-      :provider="selectedItem.provider"
+      :item="selectedItem"
+      :date="date"
       v-if="selectedItem"
       @cancel="selectedItem = null"
     />
@@ -62,6 +63,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    date: {
+      type: String,
+      default: '',
+    },
   },
   components: {
     BookingModal,
@@ -69,6 +74,7 @@ export default {
   data() {
     return {
       selectedItem: null,
+      colors: localStorage.getItem('colors') ? 'active' : '',
     }
   },
   computed: {
@@ -95,7 +101,7 @@ export default {
           headers.push({
             name: court.name,
             border: index === 0 ? 'border-left' : '',
-            provider: provider.name,
+            provider: provider.id,
           })
         })
       })
@@ -118,6 +124,7 @@ export default {
   },
   methods: {
     select(item) {
+      console.log(item)
       if (!['AVAILABLE', 'FIXED_TIME', 'HEADER'].includes(item.type)) return
       this.selectedItem = item
     },
@@ -138,6 +145,8 @@ export default {
         initial_time: halfHour ? `${time - 0.5}:30` : `${time}:00`,
         end_time: halfHour ? `${time + 0.5}:00` : `${time}:30`,
         name: court.name,
+        resource: court.id,
+        hour: halfHour ? `${time - 0.5}:30` : `${time}:00`,
         provider: court.provider,
       }
       court.bookings.forEach(booking => {
@@ -147,6 +156,7 @@ export default {
             type: 'BOOKING',
             rowspan: booking.total_time / 30,
             name: court.name,
+            resource: court.id,
             provider: court.provider,
           }
         } else if (
@@ -166,6 +176,8 @@ export default {
             type: 'FIXED_TIME',
             rowspan: fixedTime.total_time / 30,
             name: court.name,
+            resource: court.id,
+            hour: fixedTime.id,
             provider: court.provider,
           }
         } else if (
@@ -250,6 +262,37 @@ td.item-BOOKING {
 .item-AVAILABLE {
   background-color: #ffffff;
   cursor: pointer;
+}
+
+.item-active-padeloriente {
+  background-color: green;
+}
+
+.item-active-santuario {
+  background-color: lightgreen;
+}
+
+.item-active-maspadel {
+  background-color: lightblue;
+}
+.item-active-rinconada {
+  background-color: purple;
+}
+
+.item-active-bullpadel {
+  background-color: #179be5;
+}
+
+.item-active-conecta {
+  background-color: yellow;
+}
+
+.item-active-altopadel {
+  background-color: orange;
+}
+
+.item-active-padelbreak {
+  background-color: #a78b67;
 }
 div.overflow-x {
   overflow-x: auto;

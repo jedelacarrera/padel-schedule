@@ -7,7 +7,7 @@
         :key="provider"
         class="my-4"
       >
-        <h2>{{ provider }}</h2>
+        <h2>{{ providers[provider].name }}</h2>
         <div class="d-flex flex-column align-start pa-4">
           <li v-for="(item, index) in providers[provider].prices" :key="index">
             <span>{{ item.time }}:</span> {{ item.price }}
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     goToProvider(url) {
-      window.open(url)
+      window.open(url + 'Booking/Grid.aspx')
     },
   },
 }
