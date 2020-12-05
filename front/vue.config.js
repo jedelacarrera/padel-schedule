@@ -10,9 +10,7 @@ module.exports = {
   transpileDependencies: ['vuetify'],
   css: {
     loaderOptions: {
-      scss: {
-        prependData: `@import "@/assets/_styles.scss";`,
-      },
+      scss: {},
     },
     extract: false,
   },
