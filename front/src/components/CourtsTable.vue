@@ -28,7 +28,7 @@
             v-for="(elem, index) in getElementsFromTime(time)"
             :key="elem.provider + index.toString() + elem.initial_time"
             :rowspan="elem.rowspan"
-            :class="`item item-${elem.type} item-${colors}-${elem.provider}`"
+            :class="`item item-${elem.type} item-${colors}-${elem.provider} item-${colors}-${elem.courtNumber}`"
             @click="select(elem)"
           >
             {{ elem.initial_time }}
@@ -140,6 +140,7 @@ export default {
 
       const halfHour = time % 1 > 0
       let value = {
+        courtNumber: court.name.trim().slice(-1),
         rowspan: 1,
         type: 'AVAILABLE',
         initial_time: halfHour ? `${time - 0.5}:30` : `${time}:00`,
@@ -152,6 +153,7 @@ export default {
       court.bookings.forEach(booking => {
         if (booking.initial_time_float === time) {
           value = {
+            ...value,
             ...booking,
             type: 'BOOKING',
             rowspan: booking.total_time / 30,
@@ -172,6 +174,7 @@ export default {
       court.fixed_times.forEach(fixedTime => {
         if (fixedTime.initial_time_float === time) {
           value = {
+            ...value,
             ...fixedTime,
             type: 'FIXED_TIME',
             rowspan: fixedTime.total_time / 30,
@@ -266,6 +269,7 @@ td.item-BOOKING {
 
 .item-active-padeloriente {
   background-color: green;
+  color: #fff;
 }
 
 .item-active-santuario {
@@ -277,6 +281,7 @@ td.item-BOOKING {
 }
 .item-active-rinconada {
   background-color: purple;
+  color: #fff;
 }
 
 .item-active-bullpadel {
@@ -294,6 +299,35 @@ td.item-BOOKING {
 .item-active-padelbreak {
   background-color: #a78b67;
 }
+
+.item-active-1 {
+  opacity: 1;
+}
+
+.item-active-2 {
+  opacity: 0.93;
+}
+
+.item-active-2 {
+  opacity: 0.86;
+}
+
+.item-active-3 {
+  opacity: 0.79;
+}
+
+.item-active-4 {
+  opacity: 0.72;
+}
+
+.item-active-5 {
+  opacity: 0.65;
+}
+
+.item-active-6 {
+  opacity: 0.58;
+}
+
 div.overflow-x {
   overflow-x: auto;
 }
