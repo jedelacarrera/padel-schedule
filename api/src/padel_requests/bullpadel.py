@@ -24,7 +24,6 @@ class BullPadelClient(BaseClient):
     }
 
     NAME = "Bull Padel"
-    FILTER = "Cancha"
 
     @cache_decorator("bullpadel", 120, index=1)
     def get_schedule(self, date: str):
