@@ -30,6 +30,7 @@
             :rowspan="elem.rowspan"
             :class="`item item-${elem.type} item-${colors}-${elem.provider} item-${colors}-${elem.courtNumber}`"
             @click="select(elem)"
+            :style="{ height: elem.rowspan * 14 + 'px' }"
           >
             {{ elem.initial_time }}
             {{ elem.end_time ? '-' : '' }}
