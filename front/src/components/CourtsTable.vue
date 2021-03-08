@@ -35,6 +35,10 @@
             {{ elem.initial_time }}
             {{ elem.end_time ? '-' : '' }}
             {{ elem.end_time }}
+            <br v-if="elem.price" />
+            <span style="font-size: 0.8em">
+              {{ elem.price }}
+            </span>
           </td>
         </tr>
       </table>
@@ -183,6 +187,7 @@ export default {
             resource: court.id,
             hour: fixedTime.id,
             provider: court.provider,
+            price: fixedTime.price,
           }
         } else if (
           fixedTime.initial_time_float < time &&
@@ -202,6 +207,7 @@ export default {
             value.total_time =
               (value.end_time_float - value.initial_time_float) * 60
             value.rowspan = value.total_time / 30
+            value.price = ''
           }
         })
       }

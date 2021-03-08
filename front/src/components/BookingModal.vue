@@ -64,7 +64,10 @@
         </v-row>
       </div>
       <v-btn v-else @click="goToProvider">Ver horarios en página web</v-btn>
-      <v-row v-if="providerElem.terms" class="pl-4">
+      <v-row
+        v-if="providerElem.terms && response.options.length > 0"
+        class="pl-4"
+      >
         <v-col cols="1" class="text-end">
           <v-checkbox v-model="checked" readonly class="mt-0" />
         </v-col>
