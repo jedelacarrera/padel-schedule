@@ -16,7 +16,7 @@ def test_get_info_from_court(snapshot):
 def test_get_conecta_schedule(requests, snapshot):
     client = ConectaClient()
     requests.post().json.return_value = RESPONSE
-    data = '{"idCuadro": "4", "fecha": "16/09/2021"}'
+    data = '{"idCuadro": "5", "fecha": "16/09/2021"}'
     url = "http://www.clubconecta.cl/booking/srvc.aspx/ObtenerCuadro"
     result = client.get_schedule("16/09/2021")
     assert requests.post.call_args[0] == (url,)

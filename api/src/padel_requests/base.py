@@ -108,6 +108,7 @@ class BaseClient:
                 "end_time_float": time_to_float(fixed_time["StrHoraFin"]),
                 "total_time": fixed_time["Minutos"],
                 "valid": fixed_time["Clickable"],
+                "price": fixed_time.get("TextoAdicional", ""),
             }
             for fixed_time in court["HorariosFijos"]
         ]

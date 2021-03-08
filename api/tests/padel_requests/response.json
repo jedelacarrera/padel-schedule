@@ -699,7 +699,7 @@
             "MostrarOpcionesContratacionHorariosLibres": false,
             "StrHoraFin": "11:00",
             "StrHoraInicio": "09:30",
-            "TextoAdicional": ""
+            "TextoAdicional": "$ 20.000"
           },
           {
             "Clickable": false,
