@@ -15,7 +15,7 @@ with open("tests/padel_requests/response_fixed_time.json", "rb") as file:
 @patch("src.padel_requests.base.requests")
 def test_get_schedule(requests, snapshot):
     requests.post().json.return_value = RESPONSE_SCHEDULE
-    data = '{"idCuadro": "4", "fecha": "16/09/2021"}'
+    data = '{"idCuadro": "5", "fecha": "16/09/2021"}'
     url = "http://www.clubconecta.cl/booking/srvc.aspx/ObtenerCuadro"
     with app.test_client() as test_app:
         result = test_app.get("/get_schedule/conecta/2021-09-16")
@@ -32,7 +32,7 @@ def test_get_schedule(requests, snapshot):
 def test_get_availability(requests, snapshot):
     # pylint: disable=line-too-long
     requests.post().json.return_value = RESPONSE_AVAILABILITY
-    data = '{"idCuadro": "4", "idRecurso": "19", "idmodalidad": 5, "fecha": "16/09/2021", "hora": "1174"}'
+    data = '{"idCuadro": "5", "idRecurso": "19", "idmodalidad": 5, "fecha": "16/09/2021", "hora": "1174"}'
     url = "http://www.clubconecta.cl/booking/srvc.aspx/ObtenerInformacionHuecoLibre"
     with app.test_client() as test_app:
         result = test_app.get("/get_availability/conecta/19/2021-09-16/1174")
