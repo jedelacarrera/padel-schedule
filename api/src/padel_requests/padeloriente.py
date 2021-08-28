@@ -18,7 +18,7 @@ class PadelOriente(BaseClient):
     }
 
     COOKIES = {
-        "ASP.NET_SessionId": "jk3ee1zlixmsfx55dzwizj45",
+        "ASP.NET_SessionId": "u4eprcv1re2phq450asute55",
         "cb-enabled": "enabled",
         "i18next": "es-CL",
     }

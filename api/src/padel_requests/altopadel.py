@@ -18,7 +18,7 @@ class AltoPadelClient(BaseClient):
     }
 
     COOKIES = {
-        "ASP.NET_SessionId": "k23fm33ggysunmuy2j1hhu45",
+        "ASP.NET_SessionId": "nyvqolbcxwvqze551yd15mfz",
         "cb-enabled": "enabled",
         "i18next": "es-CL",
     }

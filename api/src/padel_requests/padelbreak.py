@@ -12,13 +12,14 @@ class PadelBreakClient(BaseClient):
         "Content-Type": "application/json; charset=utf-8",
         "X-Requested-With": "XMLHttpRequest",
         "Origin": "http://padelbreak.cl",
+        "DNT": "1",
         "Connection": "keep-alive",
         "Referer": "http://padelbreak.cl/Booking/Grid.aspx",
     }
 
     COOKIES = {
         "cb-enabled": "accepted",
-        "ASP.NET_SessionId": "v3xpz3m3o5ptzq454acdtj55",
+        "ASP.NET_SessionId": "d11vvaz4vxeemd3kl0qw1h3d",
         "i18next": "es-CL",
     }
 

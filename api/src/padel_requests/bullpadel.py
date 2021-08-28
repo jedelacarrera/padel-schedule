@@ -18,8 +18,7 @@ class BullPadelClient(BaseClient):
     }
 
     COOKIES = {
-        "ASP.NET_SessionId": "q420jcysx4farw45bnibc4vz",
-        "cb-enabled": "enabled",
+        "ASP.NET_SessionId": "zt5yqanaqqzqmd45ptomfe45",
         "i18next": "es-CL",
     }
 

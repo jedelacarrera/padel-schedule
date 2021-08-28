@@ -356,7 +356,7 @@
             "Minutos": 840,
             "ReservaUsuarioActual": false,
             "StrHoraFin": "23:00",
-            "StrHoraInicio": "09:00",
+            "StrHoraInicio": "9:00",
             "Texto1": "",
             "Texto2": "",
             "Tipo": "reserva_club"
@@ -1231,7 +1231,7 @@
     "StrFechaMax": "01/10/2020",
     "StrFechaMin": "17/09/2020",
     "StrHoraActualDelCentro": "20:26",
-    "StrHoraFin": "23:00",
+    "StrHoraFin": null,
     "StrHoraInicio": "09:00",
     "StrHoraInicioReservas": "20:26",
     "TieneClienteAcceso": true,

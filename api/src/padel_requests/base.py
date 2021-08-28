@@ -10,6 +10,7 @@ class BaseClient:
     NAME = None
     FILTER = ""
     ID_CUADRO = "4"
+    DEFAULT_END_TIME = "23:00"  # Just in case it is needed
 
     def get_availability(self, resource: str, date: str, hour: str) -> dict:
         data = json.dumps(
@@ -70,6 +71,8 @@ class BaseClient:
 
         response = response["d"]
 
+        # Sometimes it is None
+        response["StrHoraFin"] = response["StrHoraFin"] or self.DEFAULT_END_TIME
         courts = [
             self.get_info_from_court(
                 court, response["StrHoraInicio"], response["StrHoraFin"]

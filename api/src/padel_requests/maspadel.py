@@ -12,19 +12,19 @@ class MasPadelClient(BaseClient):
         "Content-Type": "application/json; charset=utf-8",
         "X-Requested-With": "XMLHttpRequest",
         "Origin": "http://www.maspadel.cl",
-        "DNT": "1",
         "Connection": "keep-alive",
         "Referer": "http://www.maspadel.cl/Booking/Grid.aspx",
     }
 
     COOKIES = {
-        "ASP.NET_SessionId": "f4gfeca205pe0245collsr45",
+        "ASP.NET_SessionId": "f5vqhj2shi4ioq3hxqdfignj",
         "cb-enabled": "accepted",
         "i18next": "es-ES",
     }
 
     NAME = "Más Padel"
     FILTER = "PÁDEL"
+    DEFAULT_END_TIME = "23:00"
 
     @cache_decorator("maspadel", 120, index=1)
     def get_schedule(self, date: str):
