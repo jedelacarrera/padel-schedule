@@ -12,13 +12,14 @@ class ConectaClient(BaseClient):
         "Content-Type": "application/json; charset=utf-8",
         "X-Requested-With": "XMLHttpRequest",
         "Origin": "http://www.clubconecta.cl",
+        "DNT": "1",
         "Connection": "keep-alive",
         "Referer": "http://www.clubconecta.cl/Booking/Grid.aspx",
     }
 
     COOKIES = {
         "cb-enabled": "enabled",
-        "ASP.NET_SessionId": "cfwfnmn1c15bx0u34g5bkoia",
+        "ASP.NET_SessionId": "gy1wne55zstmb0mvjdoadc45",
         "i18next": "es-CL",
     }
 

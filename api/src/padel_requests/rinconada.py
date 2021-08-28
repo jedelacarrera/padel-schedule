@@ -20,7 +20,7 @@ class Rinconada(BaseClient):
     }
 
     COOKIES = {
-        "ASP.NET_SessionId": "dvqqejq1rqlxpnb5pizpif45",
+        "ASP.NET_SessionId": "o0hnjfe1xh3rpn55mom35b45",
         "cb-enabled": "enabled",
         "i18next": "es-CL",
     }
