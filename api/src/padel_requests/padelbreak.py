@@ -19,7 +19,7 @@ class PadelBreakClient(BaseClient):
 
     COOKIES = {
         "cb-enabled": "enabled",
-        "ASP.NET_SessionId": "ododdj55k0ndp1agzj0fnjfw",
+        "ASP.NET_SessionId": "xiciuefzwv5sjtei4yupa1yq",
         "i18next": "es-CL",
     }
 

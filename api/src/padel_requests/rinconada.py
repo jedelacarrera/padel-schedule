@@ -11,6 +11,7 @@ class Rinconada(BaseClient):
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",  # pylint: disable=line-too-long
         "Accept": "application/json, text/javascript, */*; q=0.01",
         "Accept-Language": "en-US,en;q=0.5",
+        "Accept-Encoding": "gzip, deflate",
         "Content-Type": "application/json; charset=utf-8",
         "X-Requested-With": "XMLHttpRequest",
         "Origin": "http://clubrinconada.cl",
@@ -20,13 +21,13 @@ class Rinconada(BaseClient):
     }
 
     COOKIES = {
-        "ASP.NET_SessionId": "o0hnjfe1xh3rpn55mom35b45",
+        "ASP.NET_SessionId": "ddbt2ljwyd01dgipvkaqw355",
         "cb-enabled": "enabled",
         "i18next": "es-CL",
     }
 
     NAME = "Club Rinconada"
-    FILTER = "Cancha"
+    FILTER = ""
 
     @cache_decorator("rinconada", 120, index=1)
     def get_schedule(self, date: str):
