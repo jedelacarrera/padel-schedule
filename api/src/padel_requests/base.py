@@ -1,7 +1,20 @@
 import json
-import requests
-from src.helpers import time_to_float
 import logging
+import requests
+
+from google.cloud.logging import Client as LoggingClient
+from src.helpers import time_to_float
+
+logging_info = {"setup": False, "client": None}
+
+
+def send_warning(info):
+    if logging_info["client"] is None:
+
+        logging_info["client"] = LoggingClient()
+        logging_info["client"].setup_logging()
+
+    logging.warning(info)
 
 
 class BaseClient:

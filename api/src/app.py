@@ -1,14 +1,11 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 
-from google.cloud.logging import Client as LoggingClient
 
 from src.padel_requests import PADEL_REQUESTS, map_date
 
 app = Flask(__name__)
 CORS(app, support_credentials=True, resources={r"/*": {"origins": "*"}})
-logging_client = LoggingClient()
-logging_client.setup_logging()
 
 
 @app.route("/get_schedule/<provider>/<date>", methods=["GET"])
