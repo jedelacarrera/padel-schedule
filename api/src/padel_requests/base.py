@@ -1,6 +1,7 @@
 import json
 import requests
 from src.helpers import time_to_float
+import logging
 
 
 class BaseClient:
@@ -84,7 +85,7 @@ class BaseClient:
             if self.FILTER in court.get("TextoPrincipal", "")
         ]
         if len(courts) == 0:
-            print(response)
+            logging.warning(response)
 
         return {
             "initial_time": response["StrHoraInicio"],
