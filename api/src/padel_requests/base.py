@@ -83,6 +83,9 @@ class BaseClient:
             for court in response["Columnas"]
             if self.FILTER in court.get("TextoPrincipal", "")
         ]
+        if len(courts) == 0:
+            print(response)
+
         return {
             "initial_time": response["StrHoraInicio"],
             "initial_time_float": time_to_float(response["StrHoraInicio"]),
