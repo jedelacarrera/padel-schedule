@@ -2,7 +2,7 @@ venv/
 __pycache__/
 *.py[cod]
 *$py.class
-.env*
+.env
 .vscode*
 .pytest_cache
 extra_docs.txt

@@ -13,7 +13,7 @@ class PadelOriente(BaseClient):
         # 'Cookie': 'ASP.NET_SessionId=hd4wmv45icl3gorj222wt0ip; cb-enabled=enabled; i18next=es-CL',
         'Origin': 'http://padeloriente.cl',
         'Referer': 'http://padeloriente.cl/Booking/Grid.aspx',
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',  # pylint: disable=line-too-long
         'X-Requested-With': 'XMLHttpRequest',
     }
 

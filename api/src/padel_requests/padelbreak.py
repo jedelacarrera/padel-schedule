@@ -13,7 +13,7 @@ class PadelBreakClient(BaseClient):
         # 'Cookie': 'ASP.NET_SessionId=y304ufqqvcqb0155cf0yb055; cb-enabled=enabled; i18next=es-CL',
         'Origin': 'http://padelbreak.cl',
         'Referer': 'http://padelbreak.cl/Booking/Grid.aspx',
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',  # pylint: disable=line-too-long
         'X-Requested-With': 'XMLHttpRequest',
     }
 

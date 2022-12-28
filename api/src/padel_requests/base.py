@@ -43,6 +43,7 @@ class BaseClient:
             headers=self.HEADERS,
             cookies=self.COOKIES,
             data=data,
+            timeout=10,
         ).json()
         return {
             "title": response["d"]["Titulo"],
@@ -67,6 +68,7 @@ class BaseClient:
             headers=self.HEADERS,
             cookies=self.COOKIES,
             data=data,
+            timeout=10,
         ).json()
         return {
             "title": response["d"]["Titulo"],
@@ -83,6 +85,7 @@ class BaseClient:
             headers=self.HEADERS,
             cookies=self.COOKIES,
             data=json.dumps({"idCuadro": self.ID_CUADRO, "fecha": date, "p": self.P}),  # 16/9/2020
+            timeout=10,
         ).json()
 
         response = response["d"]
