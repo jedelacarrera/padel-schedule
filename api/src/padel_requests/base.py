@@ -26,6 +26,7 @@ class BaseClient:
     ID_CUADRO = "4"
     DEFAULT_START_TIME = "07:00"  # Just in case it is needed
     DEFAULT_END_TIME = "23:00"  # Just in case it is needed
+    P = None
 
     def get_availability(self, resource: str, date: str, hour: str) -> dict:
         data = json.dumps(
@@ -77,12 +78,19 @@ class BaseClient:
         }
 
     def get_schedule(self, date: str):
+        print("Getting schedule for", date)
+        print(self.URL + "ObtenerCuadro")
+        print(self.HEADERS)
+        print(self.COOKIES)
+        print(json.dumps({"idCuadro": self.ID_CUADRO, "fecha": date, "p": self.P}))
+
         response = requests.post(
             self.URL + "ObtenerCuadro",
             headers=self.HEADERS,
             cookies=self.COOKIES,
-            data=json.dumps({"idCuadro": self.ID_CUADRO, "fecha": date}),  # 16/9/2020
+            data=json.dumps({"idCuadro": self.ID_CUADRO, "fecha": date, "p": self.P}),  # 16/9/2020
         ).json()
+        print(response)
 
         response = response["d"]
 
