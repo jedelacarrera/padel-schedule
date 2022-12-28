@@ -84,7 +84,9 @@ class BaseClient:
             self.URL + "ObtenerCuadro",
             headers=self.HEADERS,
             cookies=self.COOKIES,
-            data=json.dumps({"idCuadro": self.ID_CUADRO, "fecha": date, "p": self.P}),  # 16/9/2020
+            data=json.dumps(
+                {"idCuadro": self.ID_CUADRO, "fecha": date, "p": self.P}
+            ),  # 16/9/2020
             timeout=10,
         ).json()
 

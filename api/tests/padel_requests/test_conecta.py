@@ -16,8 +16,8 @@ def test_get_info_from_court(snapshot):
 def test_get_conecta_schedule(requests, snapshot):
     client = ConectaClient()
     requests.post().json.return_value = RESPONSE
-    data = '{"idCuadro": "5", "fecha": "16/09/2021"}'
-    url = "http://www.clubconecta.cl/booking/srvc.aspx/ObtenerCuadro"
+    data = '{"idCuadro": "5", "fecha": "16/09/2021", "p": "eNEe29kXfZDAz5z94mPqWy9Q9mCzyGFZyiJh+wMWWunglvloaKL4JA=="}'
+    url = "https://www.clubconecta.cl/booking/srvc.aspx/ObtenerCuadro"
     result = client.get_schedule("16/09/2021")
     assert requests.post.call_args[0] == (url,)
     assert requests.post.call_args[1].get("headers") is not None
